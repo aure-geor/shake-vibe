@@ -121,7 +121,7 @@ export function Devis() {
               <Input
                 id="telephone"
                 type="tel"
-                placeholder="06 12 34 56 78"
+                placeholder="06 XX XX XX XX"
                 aria-invalid={!!errors.telephone}
                 {...register('telephone')}
               />
