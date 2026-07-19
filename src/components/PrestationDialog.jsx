@@ -40,7 +40,7 @@ export function PrestationDialog({ prestation, onOpenChange }) {
                     <img
                       src={asset(photo)}
                       alt={`${prestation.titre} — photo ${index + 1}`}
-                      className="max-h-[65vh] w-full rounded-lg object-contain"
+                      className="aspect-4/5 max-h-[65vh] w-full rounded-lg object-cover"
                     />
                   </CarouselItem>
                 ))}

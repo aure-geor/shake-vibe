@@ -25,7 +25,7 @@ export const prestations = [
     lieu: 'Garden Frégate',
     tag: 'Soirée privée',
     image: 'lieu/freg.jpeg',
-    photos: ['lieu/freg.jpeg'],
+    photos: ['lieu/freg.jpeg', 'lieu/freg-1.jpeg', 'lieu/freg-2.jpeg', 'lieu/freg-3.jpeg'],
     description:
       "Sous les guirlandes lumineuses, une sélection de cocktails signature accompagnée d'animations et d'une ambiance live music jusqu'au bout de la nuit.",
   },
