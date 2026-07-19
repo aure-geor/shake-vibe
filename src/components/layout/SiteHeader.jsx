@@ -58,7 +58,7 @@ export function SiteHeader() {
           <img
             src={asset('logo.png')}
             alt="Shake & Vibe — Barman privé pour vos évènements"
-            className="h-26 w-auto"
+            className="h-20 w-auto"
           />
         </Link>
 
