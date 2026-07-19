@@ -58,7 +58,7 @@ export function SiteHeader() {
           <img
             src={asset('logo.png')}
             alt="Shake & Vibe — Barman privé pour vos évènements"
-            className="h-12 w-auto sm:h-14"
+            className="h-26 w-auto"
           />
         </Link>
 
@@ -77,7 +77,7 @@ export function SiteHeader() {
           >
             <SheetTitle className="sr-only">Menu</SheetTitle>
             <div className="mt-10 flex flex-col items-start gap-2 px-2">
-              <img src={asset('logo.png')} alt="" className="mb-6 h-14 w-auto" />
+              <img src={asset('logo.png')} alt="" className="mb-6 h-18 w-auto" />
               <NavLinks
                 className="flex w-full flex-col gap-1"
                 linkClassName="w-full rounded-md px-2 py-3 text-base font-medium"
