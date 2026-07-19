@@ -55,6 +55,10 @@ export const quoteSchema = z
       error: "Merci de sélectionner un type d'évènement.",
     }),
     dateEvenement: z.date({ error: "Merci de sélectionner une date d'évènement." }),
+    heureDebut: z.object({
+      heures: z.coerce.number().min(0).max(23),
+      minutes: z.coerce.number().min(0).max(59),
+    }),
     lieuEvenement: z.string().trim().min(1, "Le lieu de l'évènement est requis."),
     nombrePersonnes: z.enum(NOMBRES_PERSONNES.map((n) => n.value), {
       error: 'Merci de sélectionner le nombre de personnes.',
@@ -97,6 +101,7 @@ export const quoteDefaultValues = {
   telephone: '',
   typeEvenement: null,
   dateEvenement: undefined,
+  heureDebut: { heures: 18, minutes: 0 },
   lieuEvenement: '',
   nombrePersonnes: null,
   duree: { jours: 0, heures: 0, minutes: 0 },

@@ -21,6 +21,7 @@ import { Calendar } from '@/components/ui/calendar'
 
 import { FormField } from '@/components/devis/FormField'
 import { DureeField } from '@/components/devis/DureeField'
+import { HeureDebutField } from '@/components/devis/HeureDebutField'
 import {
   quoteSchema,
   quoteDefaultValues,
@@ -201,11 +202,29 @@ export function Devis() {
             </FormField>
 
             <FormField
+              label="Heure de début de l'évènement"
+              htmlFor="heureDebut"
+              required
+              error={errors.heureDebut?.message}
+            >
+              <Controller
+                control={control}
+                name="heureDebut"
+                render={({ field }) => (
+                  <HeureDebutField
+                    id="heureDebut"
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
+              />
+            </FormField>
+
+            <FormField
               label="Lieu de l'évènement"
               htmlFor="lieuEvenement"
               required
               error={errors.lieuEvenement?.message}
-              className="sm:col-span-2"
             >
               <Input
                 id="lieuEvenement"

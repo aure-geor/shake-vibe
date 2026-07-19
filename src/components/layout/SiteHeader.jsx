@@ -45,10 +45,10 @@ export function SiteHeader() {
   }, [])
 
   return (
-    <header className="sticky top-0 z-50">
-      <div
+    <>
+      <header
         className={[
-          'flex items-center justify-between gap-4 border-b px-4 transition-colors duration-300 sm:px-6 lg:px-10',
+          'sticky top-0 z-50 flex items-center justify-between gap-4 border-b px-4 transition-colors duration-300 sm:px-6 lg:px-10',
           scrolled
             ? 'border-gold/20 bg-black/90 backdrop-blur-md'
             : 'border-transparent bg-black',
@@ -86,13 +86,13 @@ export function SiteHeader() {
             </div>
           </SheetContent>
         </Sheet>
-      </div>
+      </header>
 
       <img
         src={asset('banniere.png')}
         alt="Shake & Vibe — Barman privé pour vos évènements : soirées, anniversaires, mariages, séminaires, ateliers cocktails"
-        className="block h-auto w-full"
+        className="mx-auto block h-auto w-full max-w-4xl"
       />
-    </header>
+    </>
   )
 }
