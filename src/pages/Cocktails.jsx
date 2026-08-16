@@ -84,7 +84,9 @@ export function Cocktails() {
             Notre carte de cocktails
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-            Un aperçu de nos créations, classées par univers de saveurs.
+            Des créations originales et pour toutes les envies. Imaginées par Shake
+            &amp; Vibe pour vous surprendre autant par les saveurs que par la
+            présentation.
           </p>
           <PhotoCarousel
             photos={menuPhotos}
@@ -95,6 +97,11 @@ export function Cocktails() {
             showDots={false}
             className="mt-10"
           />
+          <p className="mx-auto mt-10 max-w-2xl text-center text-white/65">
+            Vous ne trouvez pas votre bonheur&nbsp;? Notre carte n&apos;est qu&apos;un
+            aperçu. Nous pouvons également imaginer des cocktails sur mesure selon vos
+            goûts, votre thème ou l&apos;univers de votre évènement.
+          </p>
         </>
       )}
 
