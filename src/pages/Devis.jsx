@@ -410,7 +410,7 @@ export function Devis() {
           className="w-full bg-gold text-black hover:bg-gold/90 sm:w-auto"
         >
           {isSubmitting && <Loader2 className="size-4 animate-spin" />}
-          Obtenir mon devis
+          Demander un devis
         </Button>
       </form>
     </div>

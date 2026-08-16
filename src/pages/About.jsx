@@ -128,7 +128,7 @@ export function About() {
             size="lg"
             className="mt-8 bg-gold text-black hover:bg-gold/90"
           >
-            Obtenir mon devis
+            Demander un devis
             <ArrowRight className="size-4" />
           </Button>
         </div>

@@ -85,7 +85,7 @@ export function Home() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">
             Créez une expérience unique pour vos évènements privés et professionnels avec
-            une mixologie élégante et festive.
+            une approche élégante et festive.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
@@ -94,7 +94,7 @@ export function Home() {
               size="lg"
               className="bg-gold text-black hover:bg-gold/90"
             >
-              Obtenir mon devis
+              Demander un devis
               <ArrowRight className="size-4" />
             </Button>
             <Button
@@ -144,8 +144,15 @@ export function Home() {
             Ce que nous proposons
           </p>
           <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-            Une prestation pensée pour chaque occasion
+            Une prestation clé en main, partout où vous en avez besoin
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+            Shake &amp; Vibe se déplace directement sur le lieu de votre évènement avec tout
+            le nécessaire&nbsp;: bar mobile, matériel professionnel, verrerie, ingrédients,
+            carte cocktails personnalisée. Nous prenons en charge votre espace bar de A à Z
+            pour vous offrir une prestation entièrement autonome et adaptée à votre
+            évènement.
+          </p>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map(({ id, titre, description }) => {
@@ -182,7 +189,7 @@ export function Home() {
               size="lg"
               className="bg-gold text-black hover:bg-gold/90"
             >
-              Obtenir mon devis
+              Demander un devis
               <ArrowRight className="size-4" />
             </Button>
             <Button
