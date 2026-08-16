@@ -1,68 +1,83 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Compass, MapPin, Plane, Sparkles } from 'lucide-react'
+import { ArrowRight, Flame, MapPin, Sparkles, Wind } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { useSiteImages } from '@/hooks/useSiteImages'
 
 const ETAPES = [
   {
-    lieu: 'La Havane, Cuba',
-    icon: Plane,
+    lieu: 'Mexique',
+    icon: Wind,
     texte:
-      "Premières nuits derrière un bar de quartier, entre canne à sucre, rhum vieilli et rythmes de salsa. C'est là qu'est né le goût du geste précis et généreux.",
+      "La découverte du mezcal artisanal et des agaves fumés, une leçon d'authenticité transmise par les mezcaleros locaux.",
   },
   {
-    lieu: 'Oaxaca, Mexique',
-    icon: Compass,
-    texte:
-      "La découverte du mezcal artisanal et des agaves fumés, une leçon d'authenticité et de patience transmise par les mezcaleros locaux.",
-  },
-  {
-    lieu: 'Tokyo, Japon',
-    icon: Sparkles,
-    texte:
-      "L'apprentissage de la précision à la japonaise : la glace taillée à la main, le geste millimétré, le respect absolu du produit.",
-  },
-  {
-    lieu: 'Florence, Italie',
+    lieu: 'Brésil',
     icon: MapPin,
     texte:
-      "L'art de l'aperitivo : partager un verre simplement, sans artifice, au cœur d'une place ensoleillée entre amis.",
+      "La caipirinha et l'énergie du flair bartending, où performance visuelle et convivialité ne font qu'un.",
+  },
+  {
+    lieu: 'Belize',
+    icon: Flame,
+    texte:
+      "Le rhum artisanal et le cacao maya, entre forêt tropicale et mer des Caraïbes, une richesse de saveurs encore méconnue.",
+  },
+  {
+    lieu: 'Caraïbes',
+    icon: Sparkles,
+    texte:
+      "D'île en île, la tradition du rhum épicé et des cocktails tiki, où chaque recette raconte l'histoire d'un archipel.",
   },
 ]
 
 export function About() {
+  const images = useSiteImages()
+  const portrait = images['apropos-portrait']
+  const surMesure = images['apropos-sur-mesure']
+
   return (
     <div className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
       <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
         Qui sommes-nous ?
       </p>
       <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-        L&apos;histoire d&apos;un barman voyageur
+        Florian, l&apos;art de la mixologie et du flair bartending
       </h1>
 
-      <div className="mt-10 space-y-6 text-base leading-relaxed text-white/80 sm:text-lg">
-        <p>
-          Tout a commencé par une envie simple&nbsp;: partir. Sac sur le dos, shaker dans
-          la valise, direction les bars du monde entier pour apprendre, goûter et
-          comprendre ce qui fait, dans chaque culture, la magie d&apos;un bon cocktail.
-          Des ruelles animées de La Havane aux bars discrets de Tokyo, chaque étape a
-          laissé une empreinte durable&nbsp;: une technique, une saveur, une manière
-          d&apos;accueillir l&apos;autre autour d&apos;un verre.
-        </p>
-        <p>
-          De retour en France, cette expérience est devenue une conviction&nbsp;: un
-          cocktail ne se limite pas à un mélange d&apos;ingrédients, c&apos;est un
-          souvenir de voyage servi dans un verre. C&apos;est cette philosophie qui a donné
-          naissance à <span className="font-medium text-gold">Shake &amp; Vibe</span>,
-          un service de barman privé pensé pour transformer chaque évènement en une
-          expérience sensorielle unique.
-        </p>
+      <div className={`mt-10 gap-10 ${portrait ? 'sm:grid sm:grid-cols-5 sm:items-start' : ''}`}>
+        {portrait && (
+          <img
+            src={portrait.url}
+            alt={portrait.alt}
+            className="mb-8 aspect-4/5 w-full rounded-xl object-cover sm:col-span-2 sm:mb-0"
+          />
+        )}
+        <div
+          className={`space-y-6 text-base leading-relaxed text-white/80 sm:text-lg ${portrait ? 'sm:col-span-3' : ''}`}
+        >
+          <p>
+            Tout commence par une passion pour le{' '}
+            <span className="font-medium text-gold">flair bartending</span>&nbsp;: le geste
+            spectaculaire qui transforme un service en performance. Florian y a bâti une
+            expertise reconnue à l&apos;international, où précision technique et sens du
+            spectacle ne font qu&apos;un.
+          </p>
+          <p>
+            Cette expertise s&apos;est forgée au fil de voyages en Amérique centrale, au
+            Brésil et dans les Caraïbes, berceau des plus grandes traditions de bar. De
+            retour en France, une
+            conviction s&apos;impose&nbsp;: un cocktail ne se boit pas, il se vit.
+            C&apos;est cette philosophie qui a donné naissance à{' '}
+            <span className="font-medium text-gold">Shake &amp; Vibe</span>.
+          </p>
+        </div>
       </div>
 
       <Separator className="my-14 bg-gold/15" />
 
       <h2 className="text-center font-heading text-2xl font-semibold sm:text-3xl">
-        Un voyage, une inspiration
+        Un voyage au cœur des spiritueux d&apos;Amérique latine et des Caraïbes
       </h2>
       <p className="mx-auto mt-3 max-w-xl text-center text-white/60">
         Quelques étapes qui continuent aujourd&apos;hui d&apos;inspirer chaque carte de
@@ -86,25 +101,37 @@ export function About() {
 
       <Separator className="my-14 bg-gold/15" />
 
-      <div className="text-center">
-        <h2 className="font-heading text-2xl font-semibold sm:text-3xl">
-          Aujourd&apos;hui, ce voyage continue dans chaque verre
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-white/70">
-          Chaque prestation Shake &amp; Vibe est composée sur-mesure&nbsp;: une écoute
-          attentive de vos envies, un service soigné et une carte de cocktails unique,
-          élaborée pour raconter, le temps d&apos;une soirée, une histoire qui vous
-          ressemble.
-        </p>
-        <Button
-          render={<Link to="/devis" />}
-          nativeButton={false}
-          size="lg"
-          className="mt-8 bg-gold text-black hover:bg-gold/90"
-        >
-          Obtenir mon devis
-          <ArrowRight className="size-4" />
-        </Button>
+      <div className="relative overflow-hidden rounded-2xl">
+        {surMesure && (
+          <>
+            <img
+              src={surMesure.url}
+              alt={surMesure.alt}
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/75" />
+          </>
+        )}
+        <div className="relative px-6 py-16 text-center sm:py-20">
+          <h2 className="font-heading text-2xl font-semibold sm:text-3xl">
+            Aujourd&apos;hui, cette expertise se retrouve dans chaque évènement
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-white/70">
+            Chaque prestation Shake &amp; Vibe est composée sur-mesure&nbsp;: une écoute
+            attentive de vos envies, un service soigné et une carte de cocktails unique,
+            élaborée pour raconter, le temps d&apos;une soirée, une histoire qui vous
+            ressemble.
+          </p>
+          <Button
+            render={<Link to="/devis" />}
+            nativeButton={false}
+            size="lg"
+            className="mt-8 bg-gold text-black hover:bg-gold/90"
+          >
+            Obtenir mon devis
+            <ArrowRight className="size-4" />
+          </Button>
+        </div>
       </div>
     </div>
   )

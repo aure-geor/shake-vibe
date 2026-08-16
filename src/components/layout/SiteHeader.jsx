@@ -6,7 +6,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/s
 
 const NAV_LINKS = [
   { to: '/qui-sommes-nous', label: 'Qui sommes-nous ?' },
-  { to: '/prestations', label: 'Nos prestations effectuées' },
+  { to: '/prestations', label: 'Nos prestations' },
+  { to: '/nos-cocktails', label: 'Nos cocktails' },
   { to: '/devis', label: 'Demande de devis' },
 ]
 
@@ -45,7 +46,6 @@ export function SiteHeader() {
   }, [])
 
   return (
-    <>
       <header
         className={[
           'sticky top-0 z-50 flex items-center justify-between gap-4 border-b px-4 transition-colors duration-300 sm:px-6 lg:px-10',
@@ -87,12 +87,5 @@ export function SiteHeader() {
           </SheetContent>
         </Sheet>
       </header>
-
-      <img
-        src={asset('banniere.png')}
-        alt="Shake & Vibe — Barman privé pour vos évènements : soirées, anniversaires, mariages, séminaires, ateliers cocktails"
-        className="mx-auto block h-auto w-full max-w-4xl"
-      />
-    </>
   )
 }

@@ -1,6 +1,10 @@
-// Placeholder d'envoi — à remplacer par EmailJS/Formspree une fois le service choisi.
-export async function sendQuoteRequest(data) {
-  await new Promise((resolve) => setTimeout(resolve, 700))
-  console.info('[Demande de devis] à envoyer par mail :', data)
-  return { ok: true }
+import { format } from 'date-fns'
+import { api } from '@/lib/api'
+
+export async function sendQuoteRequest(data, honeypot = '') {
+  return api.post('/api/quote', {
+    ...data,
+    dateEvenement: format(data.dateEvenement, 'yyyy-MM-dd'),
+    honeypot,
+  })
 }

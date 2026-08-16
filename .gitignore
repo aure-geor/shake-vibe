@@ -12,6 +12,19 @@ dist
 dist-ssr
 *.local
 
+# Notes privées / infra (jamais publiques)
+.claude/vps/
+.claude/photos-a-integrer/
+
+# Backend
+server/.env
+server/data/
+server/public/
+
+# Config MCP locale (spécifique à la machine)
+.mcp.json
+.mcp.json.tmp
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

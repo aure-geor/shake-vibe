@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
@@ -34,6 +34,8 @@ import { sendQuoteRequest } from '@/lib/sendQuote'
 
 export function Devis() {
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState(null)
+  const honeypotRef = useRef(null)
   const {
     register,
     handleSubmit,
@@ -46,8 +48,13 @@ export function Devis() {
   })
 
   const onSubmit = async (data) => {
-    await sendQuoteRequest(data)
-    setSubmitted(true)
+    setError(null)
+    try {
+      await sendQuoteRequest(data, honeypotRef.current?.value || '')
+      setSubmitted(true)
+    } catch {
+      setError("L'envoi de votre demande a échoué. Merci de réessayer dans quelques instants.")
+    }
   }
 
   if (submitted) {
@@ -87,6 +94,16 @@ export function Devis() {
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="mt-12 space-y-12">
+        <input
+          ref={honeypotRef}
+          type="text"
+          name="site_web"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        />
+
         <section className="space-y-5">
           <h2 className="font-heading text-lg font-semibold text-gold">
             Vos coordonnées
@@ -383,6 +400,8 @@ export function Devis() {
             />
           </FormField>
         </section>
+
+        {error && <p className="text-sm text-destructive">{error}</p>}
 
         <Button
           type="submit"

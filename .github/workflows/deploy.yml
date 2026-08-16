@@ -1,40 +1,66 @@
-name: Deploy to GitHub Pages
+name: Déployer sur le VPS
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: deploy-vps
+  cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Assembler le paquet de déploiement
+        run: |
+          set -euo pipefail
+          rm -rf deploy-payload
+          mkdir -p deploy-payload
+          cp -r server/. deploy-payload/
+          rm -rf deploy-payload/node_modules
+          rm -rf deploy-payload/public
+          mkdir -p deploy-payload/public
+          cp -r dist/. deploy-payload/public/
+          echo "${{ github.sha }}" > deploy-payload/DEPLOY_SHA
+
+      - name: Vérifier l'intégrité du paquet avant envoi
+        run: |
+          set -euo pipefail
+          test -s deploy-payload/index.js
+          test -s deploy-payload/public/index.html
+          test -s deploy-payload/package.json
+          FILE_COUNT=$(find deploy-payload -type f | wc -l)
+          echo "Fichiers dans le paquet : $FILE_COUNT"
+          if [ "$FILE_COUNT" -lt 10 ]; then
+            echo "Paquet suspicieusement petit, on interrompt le déploiement."
+            exit 1
+          fi
+
+      - name: Déployer via rsync restreint (utilisateur sans sudo, sans accès docker/data)
+        env:
+          SSH_KEY: ${{ secrets.VPS_DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p 59498 aureliengeor.ovh >> ~/.ssh/known_hosts 2>/dev/null
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p 59498 -o StrictHostKeyChecking=yes" \
+            deploy-payload/ deploy-shake-vibe@aureliengeor.ovh:/srv/shake-vibe/app/
+
+      - name: Nettoyer la clé SSH
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
