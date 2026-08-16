@@ -57,9 +57,11 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p 59498 aureliengeor.ovh >> ~/.ssh/known_hosts 2>/dev/null
+          # Le compte est restreint par rrsync à /srv/shake-vibe/app (chdir côté serveur) :
+          # ne pas répéter le chemin absolu ici, sous peine de double-imbrication.
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/deploy_key -p 59498 -o StrictHostKeyChecking=yes" \
-            deploy-payload/ deploy-shake-vibe@aureliengeor.ovh:/srv/shake-vibe/app/
+            deploy-payload/ deploy-shake-vibe@aureliengeor.ovh:
 
       - name: Nettoyer la clé SSH
         if: always()
