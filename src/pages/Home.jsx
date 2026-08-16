@@ -76,17 +76,16 @@ export function Home() {
           </>
         )}
         <div className="relative mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
+          <img src="/sunburst.png" alt="" className="mx-auto mb-6 h-16 w-auto sm:h-20" />
           <p className="text-xs font-medium tracking-[0.3em] text-gold uppercase">
             Notre conviction
           </p>
           <h1 className="mt-6 font-heading text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
-            Un cocktail ne se contente pas de se boire,
-            <br className="hidden sm:block" /> il se vit et se raconte
+            Le bar mobile qui transforme votre évènement en expérience
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">
-            Nous croyons que chaque évènement mérite mieux qu&apos;un simple service de
-            boissons&nbsp;: il mérite un instant de spectacle, de précision et de partage.
-            C&apos;est cette conviction qui anime chaque prestation Shake &amp; Vibe.
+            Créez une expérience unique pour vos évènements privés et professionnels avec
+            une mixologie élégante et festive.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
