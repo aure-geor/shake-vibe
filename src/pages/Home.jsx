@@ -39,8 +39,8 @@ const HOW_ITEMS = [
   },
   {
     icon: Navigation,
-    titre: 'Déplacement en région PACA',
-    texte: 'Mariages, séminaires, soirées privées et évènements professionnels partout en PACA.',
+    titre: 'Déplacement en France et à l\'international',
+    texte: 'Mariages, séminaires, soirées privées et évènements professionnels, partout en France et à l\'étranger.',
   },
   {
     icon: HeartHandshake,
