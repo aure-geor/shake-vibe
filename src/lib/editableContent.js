@@ -361,22 +361,29 @@ export const CONTENT_SCHEMA = [
       },
       {
         key: 'cocktails.wine.eyebrow',
-        label: 'Petit titre au-dessus de "Cocktails aux vins du domaine"',
+        label: 'Petit titre au-dessus de la section vins',
         type: 'text',
-        fallback: 'Une exclusivité',
+        fallback: 'Une offre dédiée aux domaines',
       },
       {
         key: 'cocktails.wine.title',
-        label: 'Titre "Cocktails aux vins du domaine"',
+        label: 'Titre de la section vins',
         type: 'text',
-        fallback: 'Cocktails aux vins du domaine',
+        fallback: 'Vos cuvées autrement.',
       },
       {
         key: 'cocktails.wine.subtitle',
-        label: 'Sous-titre de la section vins',
+        label: 'Texte de la section vins',
         type: 'textarea',
         fallback:
-          'Il est également possible de composer des cocktails signature à partir des vins de votre domaine, pour une expérience unique qui met en valeur votre lieu de réception.',
+          "Et si vos vins devenaient la signature d'une création unique ?\nChez Shake & Vibe, nous imaginons des cocktails sur mesure spécialement conçus autour des cuvées de votre domaine.\nVin blanc, rosé, rouge, effervescent ou champagne : chaque création est travaillée en fonction du profil de votre vin afin de mettre en valeur ses arômes et son identité, sans les dénaturer. L'objectif : offrir une nouvelle manière de découvrir vos cuvées, valoriser votre savoir-faire et proposer à vos visiteurs une expérience de dégustation.",
+      },
+      {
+        key: 'cocktails.wine.download_cta',
+        label: 'Texte du bouton de téléchargement de la carte des vins',
+        type: 'textarea',
+        fallback:
+          "L'objectif : offrir une nouvelle manière de découvrir vos cuvées, valoriser votre savoir-faire et proposer à vos visiteurs une expérience de dégustation originale et mémorable.",
       },
       {
         key: 'cocktails.final.title',

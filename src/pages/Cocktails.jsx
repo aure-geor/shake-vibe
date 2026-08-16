@@ -83,28 +83,36 @@ export function Cocktails() {
         </>
       )}
 
+      <Separator className="my-16 bg-gold/15" />
+      <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
+        {t('cocktails.wine.eyebrow')}
+      </p>
+      <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+        {t('cocktails.wine.title')}
+      </h2>
+      <p className="mx-auto mt-4 max-w-2xl text-center whitespace-pre-line text-white/65">
+        {t('cocktails.wine.subtitle')}
+      </p>
+      <div className="mt-8 flex justify-center">
+        <Button
+          render={<a href="/carte-vins.png" download />}
+          nativeButton={false}
+          size="lg"
+          className="h-auto max-w-xl bg-gold py-4 text-center text-black whitespace-normal hover:bg-gold/90"
+        >
+          {t('cocktails.wine.download_cta')}
+        </Button>
+      </div>
       {winePhotos.length > 0 && (
-        <>
-          <Separator className="my-16 bg-gold/15" />
-          <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
-            {t('cocktails.wine.eyebrow')}
-          </p>
-          <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-            {t('cocktails.wine.title')}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-            {t('cocktails.wine.subtitle')}
-          </p>
-          <PhotoCarousel
-            photos={winePhotos}
-            aspect="aspect-2/3"
-            fit="contain"
-            itemBasis="basis-[68%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-            gap="gap-3"
-            showDots={false}
-            className="mt-10"
-          />
-        </>
+        <PhotoCarousel
+          photos={winePhotos}
+          aspect="aspect-2/3"
+          fit="contain"
+          itemBasis="basis-[68%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+          gap="gap-3"
+          showDots={false}
+          className="mt-10"
+        />
       )}
 
       <Separator className="my-16 bg-gold/15" />
