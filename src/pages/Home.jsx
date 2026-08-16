@@ -14,42 +14,11 @@ import {
 import { Button } from '@/components/ui/button'
 import { services } from '@/data/services'
 import { useSiteImages } from '@/hooks/useSiteImages'
+import { useSiteContent } from '@/hooks/useSiteContent'
 
 // HOW — notre méthode, ce qui nous différencie
-const HOW_ITEMS = [
-  {
-    icon: Martini,
-    titre: 'Cocktails sur mesure',
-    texte: 'Des recettes personnalisées adaptées à votre évènement et à vos envies.',
-  },
-  {
-    icon: Truck,
-    titre: 'Bar mobile autonome',
-    texte: 'Une installation élégante et flexible, adaptée à tous types de lieux.',
-  },
-  {
-    icon: Wine,
-    titre: 'Verrerie disponible',
-    texte: "Jusqu'à 240 verres disponibles pour vos évènements.",
-  },
-  {
-    icon: Flame,
-    titre: 'Animation & flair bartending',
-    texte: 'Une expérience visuelle qui apporte une vraie valeur ajoutée à votre évènement.',
-  },
-  {
-    icon: Navigation,
-    titre: 'Déplacement en France et à l\'international',
-    texte: 'Mariages, séminaires, soirées privées et évènements professionnels, partout en France et à l\'étranger.',
-  },
-  {
-    icon: HeartHandshake,
-    titre: 'Accompagnement personnalisé',
-    texte: 'Conseils, préparation et suivi pour un évènement organisé en toute sérénité.',
-  },
-]
+const HOW_ICONS = [Martini, Truck, Wine, Flame, Navigation, HeartHandshake]
 
-// WHAT — ce que nous proposons concrètement
 const SERVICE_ICONS = {
   mariages: Heart,
   'evenements-prives': PartyPopper,
@@ -59,6 +28,7 @@ const SERVICE_ICONS = {
 
 export function Home() {
   const images = useSiteImages()
+  const t = useSiteContent()
   const hero = images['accueil-hero']
 
   return (
@@ -78,11 +48,10 @@ export function Home() {
         <div className="relative mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
           <img src="/sunburst.png" alt="" className="mx-auto mb-6 h-16 w-auto sm:h-20" />
           <h1 className="font-heading text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
-            Le bar mobile qui transforme votre évènement en expérience
+            {t('home.hero.title')}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">
-            Créez une expérience unique pour vos évènements privés et professionnels avec
-            une approche élégante et festive.
+            {t('home.hero.subtitle')}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
@@ -91,7 +60,7 @@ export function Home() {
               size="lg"
               className="bg-gold text-black hover:bg-gold/90"
             >
-              Demander un devis
+              {t('cta.request_quote')}
               <ArrowRight className="size-4" />
             </Button>
             <Button
@@ -101,7 +70,7 @@ export function Home() {
               variant="outline"
               className="border-gold/40 bg-transparent text-white hover:bg-gold/10 hover:text-white"
             >
-              Découvrir notre approche
+              {t('home.hero.cta_secondary')}
             </Button>
           </div>
         </div>
@@ -111,23 +80,25 @@ export function Home() {
       <section id="notre-approche" className="border-t border-gold/10 bg-white/[0.02]">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-24">
           <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
-            Notre approche
+            {t('home.how.eyebrow')}
           </p>
           <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-            L&apos;excellence au service de votre évènement
+            {t('home.how.title')}
           </h2>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {HOW_ITEMS.map(({ icon: Icon, titre, texte }) => (
+            {HOW_ICONS.map((Icon, i) => (
               <div
-                key={titre}
+                key={i}
                 className="flex flex-col gap-4 rounded-xl border border-white/10 bg-black/40 p-6 transition-colors hover:border-gold/30"
               >
                 <span className="flex size-11 items-center justify-center rounded-full border border-gold/30 text-gold">
                   <Icon className="size-5" />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-white">{titre}</h3>
-                <p className="text-sm text-white/60">{texte}</p>
+                <h3 className="font-heading text-lg font-semibold text-white">
+                  {t(`home.how.item${i + 1}.title`)}
+                </h3>
+                <p className="text-sm text-white/60">{t(`home.how.item${i + 1}.text`)}</p>
               </div>
             ))}
           </div>
@@ -138,21 +109,15 @@ export function Home() {
       <section className="border-t border-gold/10">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-24">
           <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
-            Ce que nous proposons
+            {t('home.what.eyebrow')}
           </p>
           <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-            Une prestation clé en main, partout où vous en avez besoin
+            {t('home.what.title')}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-            Shake &amp; Vibe se déplace directement sur le lieu de votre évènement avec tout
-            le nécessaire&nbsp;: bar mobile, matériel professionnel, verrerie, ingrédients,
-            carte cocktails personnalisée. Nous prenons en charge votre espace bar de A à Z
-            pour vous offrir une prestation entièrement autonome et adaptée à votre
-            évènement.
-          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">{t('home.what.text')}</p>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map(({ id, titre, description }) => {
+            {services.map(({ id }) => {
               const Icon = SERVICE_ICONS[id]
               const image = images[`accueil-${id}`]
               return (
@@ -171,8 +136,10 @@ export function Home() {
                     <span className="flex size-11 items-center justify-center rounded-full border border-gold/30 text-gold">
                       <Icon className="size-5" />
                     </span>
-                    <h3 className="font-heading text-lg font-semibold text-white">{titre}</h3>
-                    <p className="text-sm text-white/60">{description}</p>
+                    <h3 className="font-heading text-lg font-semibold text-white">
+                      {t(`services.${id}.titre`)}
+                    </h3>
+                    <p className="text-sm text-white/60">{t(`services.${id}.description`)}</p>
                   </div>
                 </div>
               )
@@ -186,7 +153,7 @@ export function Home() {
               size="lg"
               className="bg-gold text-black hover:bg-gold/90"
             >
-              Demander un devis
+              {t('cta.request_quote')}
               <ArrowRight className="size-4" />
             </Button>
             <Button
@@ -196,7 +163,7 @@ export function Home() {
               variant="outline"
               className="border-gold/40 bg-transparent text-white hover:bg-gold/10 hover:text-white"
             >
-              Voir nos réalisations
+              {t('home.what.cta_secondary')}
             </Button>
           </div>
         </div>

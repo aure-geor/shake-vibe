@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ChevronDown, ChevronUp, Loader2, Trash2, Upload } from 'lucide-react'
+import { ChevronDown, ChevronUp, GripVertical, Loader2, Trash2, Upload } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -27,6 +27,8 @@ export function AlbumsPanel() {
   const [uploadingFor, setUploadingFor] = useState(null)
   const [toDeleteAlbum, setToDeleteAlbum] = useState(null)
   const [toDeletePhoto, setToDeletePhoto] = useState(null)
+  const [draggedAlbumId, setDraggedAlbumId] = useState(null)
+  const [draggedPhoto, setDraggedPhoto] = useState(null) // { albumId, photoId }
 
   const load = () => api.get('/api/albums/admin/all').then(setAlbums).catch((e) => setError(e.message))
 
@@ -77,6 +79,53 @@ export function AlbumsPanel() {
       await load()
     } catch (err) {
       setError(err.message)
+    }
+  }
+
+  const onDropAlbum = async (targetId) => {
+    if (draggedAlbumId === null || draggedAlbumId === targetId) {
+      setDraggedAlbumId(null)
+      return
+    }
+    const ids = albums.map((a) => a.id)
+    const fromIndex = ids.indexOf(draggedAlbumId)
+    const toIndex = ids.indexOf(targetId)
+    ids.splice(toIndex, 0, ids.splice(fromIndex, 1)[0])
+
+    setAlbums((prev) => ids.map((id) => prev.find((a) => a.id === id)))
+    setDraggedAlbumId(null)
+    try {
+      await api.patch('/api/albums/reorder', { order: ids })
+    } catch (err) {
+      setError(err.message)
+      load()
+    }
+  }
+
+  const onDropPhoto = async (albumId, targetPhotoId) => {
+    if (!draggedPhoto || draggedPhoto.albumId !== albumId || draggedPhoto.photoId === targetPhotoId) {
+      setDraggedPhoto(null)
+      return
+    }
+    const album = albums.find((a) => a.id === albumId)
+    const ids = album.photoDetails.map((p) => p.id)
+    const fromIndex = ids.indexOf(draggedPhoto.photoId)
+    const toIndex = ids.indexOf(targetPhotoId)
+    ids.splice(toIndex, 0, ids.splice(fromIndex, 1)[0])
+
+    setAlbums((prev) =>
+      prev.map((a) =>
+        a.id === albumId
+          ? { ...a, photoDetails: ids.map((id) => a.photoDetails.find((p) => p.id === id)) }
+          : a
+      )
+    )
+    setDraggedPhoto(null)
+    try {
+      await api.patch(`/api/albums/${albumId}/photos/reorder`, { order: ids })
+    } catch (err) {
+      setError(err.message)
+      load()
     }
   }
 
@@ -161,7 +210,16 @@ export function AlbumsPanel() {
             const expanded = expandedId === album.id
             return (
               <div key={album.id} className="rounded-lg border border-white/10 bg-white/[0.02]">
-                <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
+                <div
+                  draggable
+                  onDragStart={() => setDraggedAlbumId(album.id)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => onDropAlbum(album.id)}
+                  className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <span className="hidden shrink-0 cursor-grab text-white/30 active:cursor-grabbing sm:block">
+                    <GripVertical className="size-4" />
+                  </span>
                   <button
                     type="button"
                     onClick={() => setExpandedId(expanded ? null : album.id)}
@@ -205,9 +263,16 @@ export function AlbumsPanel() {
                       {album.photoDetails.map((photo) => (
                         <div
                           key={photo.id}
-                          className="group relative size-24 overflow-hidden rounded-lg border border-white/10"
+                          draggable
+                          onDragStart={() => setDraggedPhoto({ albumId: album.id, photoId: photo.id })}
+                          onDragOver={(e) => e.preventDefault()}
+                          onDrop={() => onDropPhoto(album.id, photo.id)}
+                          className="group relative size-24 cursor-grab overflow-hidden rounded-lg border border-white/10 active:cursor-grabbing"
                         >
                           <img src={photo.url} alt={photo.alt} className="size-full object-cover" />
+                          <div className="absolute top-1 left-1 flex size-6 items-center justify-center rounded-full bg-black/70 text-white/80 opacity-0 transition-opacity group-hover:opacity-100">
+                            <GripVertical className="size-3.5" />
+                          </div>
                           <button
                             type="button"
                             onClick={() => setToDeletePhoto({ albumId: album.id, photoId: photo.id })}

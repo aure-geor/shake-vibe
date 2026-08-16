@@ -5,28 +5,14 @@ import { Separator } from '@/components/ui/separator'
 import { EXPERIENCES_COCKTAILS } from '@/lib/quoteSchema'
 import { useSiteImages } from '@/hooks/useSiteImages'
 import { useGallery } from '@/hooks/useGallery'
+import { useSiteContent } from '@/hooks/useSiteContent'
 import { PhotoCarousel } from '@/components/PhotoCarousel'
 
-const EXPERIENCE_CONTENT = {
-  elegante: {
-    icon: Wine,
-    texte:
-      "Des cocktails classiques revisités avec précision, pensés pour les évènements raffinés : mariages, réceptions et soirées d'entreprise.",
-  },
-  festive: {
-    icon: PartyPopper,
-    texte:
-      "Une carte audacieuse et généreuse, portée par l'énergie du flair bartending, pour des soirées privées et anniversaires mémorables.",
-  },
-  'sur-mesure': {
-    icon: Sparkles,
-    texte:
-      "Une carte entièrement composée avec vous : thème, couleurs, ingrédients de saison, pour une expérience qui vous ressemble.",
-  },
-}
+const EXPERIENCE_ICONS = { elegante: Wine, festive: PartyPopper, 'sur-mesure': Sparkles }
 
 export function Cocktails() {
   const images = useSiteImages()
+  const t = useSiteContent()
   const menuPhotos = useGallery('cocktails-menu')
   const winePhotos = useGallery('cocktails-vin')
 
@@ -36,19 +22,15 @@ export function Cocktails() {
         Nos cocktails
       </p>
       <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-        Des cocktails qui marquent les esprits
+        {t('cocktails.title')}
       </h1>
-      <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-        Des créations originales, pensées pour s&apos;adapter à votre évènement, à vos
-        envies et à votre univers.
-        <br />
-        Classiques revisités, créations signatures ou recettes entièrement sur mesure.
-        Chaque carte est imaginée pour offrir une véritable expérience à vos invités.
+      <p className="mx-auto mt-4 max-w-2xl text-center whitespace-pre-line text-white/65">
+        {t('cocktails.subtitle')}
       </p>
 
       <div className="mt-14 grid gap-6 sm:grid-cols-3">
         {EXPERIENCES_COCKTAILS.map(({ value, label }) => {
-          const { icon: Icon, texte } = EXPERIENCE_CONTENT[value]
+          const Icon = EXPERIENCE_ICONS[value]
           const image = images[`cocktails-${value}`]
           return (
             <div
@@ -67,7 +49,7 @@ export function Cocktails() {
                   <Icon className="size-5" />
                 </span>
                 <h2 className="font-heading text-lg font-semibold text-white">{label}</h2>
-                <p className="text-sm text-white/60">{texte}</p>
+                <p className="text-sm text-white/60">{t(`cocktails.experience.${value}`)}</p>
               </div>
             </div>
           )
@@ -78,15 +60,13 @@ export function Cocktails() {
         <>
           <Separator className="my-16 bg-gold/15" />
           <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
-            La carte
+            {t('cocktails.menu.eyebrow')}
           </p>
           <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-            Notre carte de cocktails
+            {t('cocktails.menu.title')}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-            Des créations originales et pour toutes les envies. Imaginées par Shake
-            &amp; Vibe pour vous surprendre autant par les saveurs que par la
-            présentation.
+            {t('cocktails.menu.subtitle')}
           </p>
           <PhotoCarousel
             photos={menuPhotos}
@@ -98,9 +78,7 @@ export function Cocktails() {
             className="mt-10"
           />
           <p className="mx-auto mt-10 max-w-2xl text-center text-white/65">
-            Vous ne trouvez pas votre bonheur&nbsp;? Notre carte n&apos;est qu&apos;un
-            aperçu. Nous pouvons également imaginer des cocktails sur mesure selon vos
-            goûts, votre thème ou l&apos;univers de votre évènement.
+            {t('cocktails.menu.upsell')}
           </p>
         </>
       )}
@@ -109,15 +87,13 @@ export function Cocktails() {
         <>
           <Separator className="my-16 bg-gold/15" />
           <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
-            Une exclusivité
+            {t('cocktails.wine.eyebrow')}
           </p>
           <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-            Cocktails aux vins du domaine
+            {t('cocktails.wine.title')}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-            Il est également possible de composer des cocktails signature à partir des vins
-            de votre domaine, pour une expérience unique qui met en valeur votre lieu de
-            réception.
+            {t('cocktails.wine.subtitle')}
           </p>
           <PhotoCarousel
             photos={winePhotos}
@@ -138,19 +114,16 @@ export function Cocktails() {
           <GlassWater className="size-5" />
         </span>
         <h2 className="font-heading text-2xl font-semibold sm:text-3xl">
-          Avec ou sans alcool, à vous de choisir
+          {t('cocktails.final.title')}
         </h2>
-        <p className="max-w-xl text-white/70">
-          Toutes nos créations sont proposées en version classique ou sans alcool, sans
-          compromis sur le goût ni la présentation.
-        </p>
+        <p className="max-w-xl text-white/70">{t('cocktails.final.text')}</p>
         <Button
           render={<Link to="/devis" />}
           nativeButton={false}
           size="lg"
           className="mt-4 bg-gold text-black hover:bg-gold/90"
         >
-          Demander un devis
+          {t('cta.request_quote')}
           <ArrowRight className="size-4" />
         </Button>
       </div>

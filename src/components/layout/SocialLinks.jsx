@@ -1,17 +1,19 @@
 import { InstagramIcon, TikTokIcon } from '@/components/icons/SocialIcons'
+import { useSiteContent } from '@/hooks/useSiteContent'
 
 const SOCIALS = [
-  { href: 'https://www.instagram.com/shakeandvibe?igsh=YWxvemZ3a2Z6Zm91', label: 'Instagram', icon: InstagramIcon },
-  { href: 'https://www.tiktok.com/@shakeandvibe_?_r=1&_t=ZN-98bx5hIixCF', label: 'TikTok', icon: TikTokIcon },
+  { key: 'links.instagram', label: 'Instagram', icon: InstagramIcon },
+  { key: 'links.tiktok', label: 'TikTok', icon: TikTokIcon },
 ]
 
 export function SocialLinks({ className = '' }) {
+  const t = useSiteContent()
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {SOCIALS.map(({ href, label, icon: Icon }) => (
+      {SOCIALS.map(({ key, label, icon: Icon }) => (
         <a
-          key={label}
-          href={href}
+          key={key}
+          href={t(key)}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}

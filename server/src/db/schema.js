@@ -34,6 +34,7 @@ export const albums = sqliteTable('albums', {
   tag: text('tag').notNull(),
   description: text('description').notNull().default(''),
   published: integer('published', { mode: 'boolean' }).notNull().default(false),
+  sortOrder: integer('sort_order').notNull().default(0),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 })
@@ -43,7 +44,14 @@ export const albumPhotos = sqliteTable('album_photos', {
   albumId: integer('album_id').notNull(),
   filename: text('filename').notNull(),
   alt: text('alt').notNull().default(''),
+  sortOrder: integer('sort_order').notNull().default(0),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+})
+
+export const siteContent = sqliteTable('site_content', {
+  key: text('key').primaryKey(),
+  value: text('value').notNull(),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 })
 
 export const galleryPhotos = sqliteTable('gallery_photos', {

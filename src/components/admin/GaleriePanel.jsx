@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Loader2, Trash2, Upload } from 'lucide-react'
+import { GripVertical, Loader2, Trash2, Upload } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -17,6 +17,7 @@ export function GaleriePanel() {
   const [error, setError] = useState(null)
   const [uploadingKey, setUploadingKey] = useState(null)
   const [toDelete, setToDelete] = useState(null)
+  const [dragged, setDragged] = useState(null) // { sectionKey, photoId }
 
   const load = () => api.get('/api/galleries/admin/all').then(setSections).catch((e) => setError(e.message))
 
@@ -50,11 +51,39 @@ export function GaleriePanel() {
     }
   }
 
+  const onDrop = async (sectionKey, targetPhotoId) => {
+    if (!dragged || dragged.sectionKey !== sectionKey || dragged.photoId === targetPhotoId) {
+      setDragged(null)
+      return
+    }
+
+    const section = sections.find((s) => s.key === sectionKey)
+    const ids = section.photos.map((p) => p.id)
+    const fromIndex = ids.indexOf(dragged.photoId)
+    const toIndex = ids.indexOf(targetPhotoId)
+    ids.splice(toIndex, 0, ids.splice(fromIndex, 1)[0])
+
+    setSections((prev) =>
+      prev.map((s) =>
+        s.key === sectionKey ? { ...s, photos: ids.map((id) => s.photos.find((p) => p.id === id)) } : s
+      )
+    )
+    setDragged(null)
+
+    try {
+      await api.patch('/api/galleries/reorder', { section: sectionKey, order: ids })
+    } catch (err) {
+      setError(err.message)
+      load()
+    }
+  }
+
   return (
     <div>
       <p className="text-sm text-white/60">
         Ces galeries s&apos;affichent en carrousel sur le site. Ajoutez ou retirez des
-        photos librement — l&apos;ordre suit l&apos;ordre d&apos;ajout.
+        photos librement, et glissez-déposez une vignette pour changer l&apos;ordre
+        d&apos;affichage.
       </p>
 
       {error && <p className="mt-4 text-sm text-destructive">{error}</p>}
@@ -71,9 +100,16 @@ export function GaleriePanel() {
               {section.photos.map((photo) => (
                 <div
                   key={photo.id}
-                  className="group relative size-28 overflow-hidden rounded-lg border border-white/10"
+                  draggable
+                  onDragStart={() => setDragged({ sectionKey: section.key, photoId: photo.id })}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => onDrop(section.key, photo.id)}
+                  className="group relative size-28 cursor-grab overflow-hidden rounded-lg border border-white/10 active:cursor-grabbing"
                 >
                   <img src={photo.url} alt={photo.alt} className="size-full object-cover" />
+                  <div className="absolute top-1 left-1 flex size-6 items-center justify-center rounded-full bg-black/70 text-white/80 opacity-0 transition-opacity group-hover:opacity-100">
+                    <GripVertical className="size-3.5" />
+                  </div>
                   <button
                     type="button"
                     onClick={() => setToDelete(photo.id)}

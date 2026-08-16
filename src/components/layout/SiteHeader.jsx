@@ -3,15 +3,17 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu } from 'lucide-react'
 import { asset } from '@/lib/assets'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
+import { useSiteContent } from '@/hooks/useSiteContent'
 
 const NAV_LINKS = [
-  { to: '/qui-sommes-nous', label: 'Qui sommes-nous ?' },
-  { to: '/prestations', label: 'Nos prestations' },
-  { to: '/nos-cocktails', label: 'Nos cocktails' },
-  { to: '/devis', label: 'Demande de devis' },
+  { to: '/qui-sommes-nous', key: 'nav.qui_sommes_nous' },
+  { to: '/prestations', key: 'nav.prestations' },
+  { to: '/nos-cocktails', key: 'nav.cocktails' },
+  { to: '/devis', key: 'nav.devis' },
 ]
 
 function NavLinks({ className, linkClassName, onNavigate }) {
+  const t = useSiteContent()
   return (
     <nav className={className}>
       {NAV_LINKS.map((link) => (
@@ -27,7 +29,7 @@ function NavLinks({ className, linkClassName, onNavigate }) {
             ].join(' ')
           }
         >
-          {link.label}
+          {t(link.key)}
         </NavLink>
       ))}
     </nav>

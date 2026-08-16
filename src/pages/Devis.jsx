@@ -31,8 +31,10 @@ import {
   TYPES_COCKTAILS,
 } from '@/lib/quoteSchema'
 import { sendQuoteRequest } from '@/lib/sendQuote'
+import { useSiteContent } from '@/hooks/useSiteContent'
 
 export function Devis() {
+  const t = useSiteContent()
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(null)
   const honeypotRef = useRef(null)
@@ -410,7 +412,7 @@ export function Devis() {
           className="w-full bg-gold text-black hover:bg-gold/90 sm:w-auto"
         >
           {isSubmitting && <Loader2 className="size-4 animate-spin" />}
-          Demander un devis
+          {t('cta.request_quote')}
         </Button>
       </form>
     </div>

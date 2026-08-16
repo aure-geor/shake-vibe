@@ -6,11 +6,13 @@ import { AlbumsPanel } from '@/components/admin/AlbumsPanel'
 import { EmplacementsPanel } from '@/components/admin/EmplacementsPanel'
 import { GaleriePanel } from '@/components/admin/GaleriePanel'
 import { PhotosPanel } from '@/components/admin/PhotosPanel'
+import { ContenuPanel } from '@/components/admin/ContenuPanel'
 import { useAdminSession } from '@/hooks/useAdminSession'
 import { api } from '@/lib/api'
 import { cn } from '@/lib/utils'
 
 const TABS = [
+  { id: 'contenu', label: 'Contenu', Panel: ContenuPanel },
   { id: 'albums', label: 'Réalisations', Panel: AlbumsPanel },
   { id: 'emplacements', label: 'Emplacements', Panel: EmplacementsPanel },
   { id: 'galerie', label: 'Galerie', Panel: GaleriePanel },
@@ -20,7 +22,7 @@ const TABS = [
 export function AdminDashboard() {
   const navigate = useNavigate()
   const { admin, loading } = useAdminSession()
-  const [tab, setTab] = useState('albums')
+  const [tab, setTab] = useState('contenu')
 
   useEffect(() => {
     if (!loading && admin === null) navigate('/admin/connexion', { replace: true })

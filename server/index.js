@@ -13,6 +13,7 @@ import { albumsRouter } from './src/routes/albums.js'
 import { siteImagesRouter } from './src/routes/siteImages.js'
 import { galleriesRouter } from './src/routes/galleries.js'
 import { adminRouter } from './src/routes/admin.js'
+import { contentRouter } from './src/routes/content.js'
 import { UPLOADS_DIR } from './src/db/client.js'
 import { buildHead } from './src/lib/seo.js'
 
@@ -53,6 +54,7 @@ app.use('/api/albums', albumsRouter)
 app.use('/api/site-images', siteImagesRouter)
 app.use('/api/galleries', galleriesRouter)
 app.use('/api/admin', adminRouter)
+app.use('/api/content', contentRouter)
 
 app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '30d', immutable: true }))
 app.use(express.static(path.join(__dirname, 'public'), { index: false }))

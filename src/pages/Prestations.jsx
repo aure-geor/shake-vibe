@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { api } from '@/lib/api'
 import { PrestationCard } from '@/components/PrestationCard'
 import { PrestationDialog } from '@/components/PrestationDialog'
+import { useSiteContent } from '@/hooks/useSiteContent'
 
 export function Prestations() {
+  const t = useSiteContent()
   const [selected, setSelected] = useState(null)
   const [albums, setAlbums] = useState(null)
   const [error, setError] = useState(null)
@@ -21,10 +23,10 @@ export function Prestations() {
         Nos réalisations
       </p>
       <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-        Des évènements sur mesure, partout où vous nous emmenez
+        {t('prestations.title')}
       </h1>
       <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-        Découvrez quelques-unes des prestations réalisées par Shake &amp; Vibe.
+        {t('prestations.subtitle')}
       </p>
 
       {error && <p className="mt-10 text-center text-sm text-destructive">{error}</p>}

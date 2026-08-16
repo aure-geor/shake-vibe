@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import path from 'node:path'
 import fs from 'node:fs/promises'
-import { eq, desc } from 'drizzle-orm'
+import { eq, asc, desc, max } from 'drizzle-orm'
 import { db, UPLOADS_DIR } from '../db/client.js'
 import { albums, albumPhotos } from '../db/schema.js'
 import { requireAdmin } from '../lib/auth.js'
@@ -11,7 +11,7 @@ import { albumInputSchema } from '../lib/validation.js'
 export const albumsRouter = Router()
 
 function serializeAlbum(album, photos) {
-  const sorted = photos.slice().sort((a, b) => a.id - b.id)
+  const sorted = photos.slice().sort((a, b) => a.sortOrder - b.sortOrder)
   return {
     id: album.id,
     titre: album.titre,
@@ -31,13 +31,18 @@ function loadAlbumWithPhotos(album) {
 }
 
 albumsRouter.get('/', (_req, res) => {
-  const rows = db.select().from(albums).where(eq(albums.published, true)).orderBy(desc(albums.createdAt)).all()
+  const rows = db
+    .select()
+    .from(albums)
+    .where(eq(albums.published, true))
+    .orderBy(asc(albums.sortOrder), desc(albums.createdAt))
+    .all()
   const result = rows.map(loadAlbumWithPhotos).filter((a) => a.photos.length > 0)
   res.json(result)
 })
 
 albumsRouter.get('/admin/all', requireAdmin, (_req, res) => {
-  const rows = db.select().from(albums).orderBy(desc(albums.createdAt)).all()
+  const rows = db.select().from(albums).orderBy(asc(albums.sortOrder), desc(albums.createdAt)).all()
   res.json(rows.map(loadAlbumWithPhotos))
 })
 
@@ -47,6 +52,7 @@ albumsRouter.post('/', requireAdmin, (req, res) => {
 
   const now = new Date()
   const data = parsed.data
+  const [{ value: maxOrder }] = db.select({ value: max(albums.sortOrder) }).from(albums).all()
   const row = db
     .insert(albums)
     .values({
@@ -55,12 +61,30 @@ albumsRouter.post('/', requireAdmin, (req, res) => {
       tag: data.tag,
       description: data.description || '',
       published: !!data.published,
+      sortOrder: (maxOrder ?? -1) + 1,
       createdAt: now,
       updatedAt: now,
     })
     .run()
 
   res.status(201).json({ id: row.lastInsertRowid })
+})
+
+albumsRouter.patch('/reorder', requireAdmin, (req, res) => {
+  const { order } = req.body || {}
+  if (!Array.isArray(order)) return res.status(400).json({ error: 'Requête invalide.' })
+
+  const rows = db.select({ id: albums.id }).from(albums).all()
+  const validIds = new Set(rows.map((r) => r.id))
+  if (order.length !== rows.length || order.some((id) => !validIds.has(id))) {
+    return res.status(400).json({ error: "L'ordre fourni ne correspond pas aux albums existants." })
+  }
+
+  order.forEach((id, index) => {
+    db.update(albums).set({ sortOrder: index }).where(eq(albums.id, id)).run()
+  })
+
+  res.json({ ok: true })
 })
 
 albumsRouter.put('/:id', requireAdmin, (req, res) => {
@@ -109,12 +133,18 @@ albumsRouter.post('/:id/photos', requireAdmin, (req, res) => {
 
     try {
       const filename = await saveResizedPhoto(req.file.buffer)
+      const [{ value: maxOrder }] = db
+        .select({ value: max(albumPhotos.sortOrder) })
+        .from(albumPhotos)
+        .where(eq(albumPhotos.albumId, albumId))
+        .all()
       const row = db
         .insert(albumPhotos)
         .values({
           albumId,
           filename,
           alt: req.body.alt || `${existing.titre} — ${existing.lieu}`,
+          sortOrder: (maxOrder ?? -1) + 1,
           createdAt: new Date(),
         })
         .run()
@@ -124,6 +154,24 @@ albumsRouter.post('/:id/photos', requireAdmin, (req, res) => {
       res.status(500).json({ error: "Le traitement de l'image a échoué." })
     }
   })
+})
+
+albumsRouter.patch('/:id/photos/reorder', requireAdmin, (req, res) => {
+  const albumId = Number(req.params.id)
+  const { order } = req.body || {}
+  if (!Array.isArray(order)) return res.status(400).json({ error: 'Requête invalide.' })
+
+  const rows = db.select({ id: albumPhotos.id }).from(albumPhotos).where(eq(albumPhotos.albumId, albumId)).all()
+  const validIds = new Set(rows.map((r) => r.id))
+  if (order.length !== rows.length || order.some((id) => !validIds.has(id))) {
+    return res.status(400).json({ error: "L'ordre fourni ne correspond pas aux photos de cet album." })
+  }
+
+  order.forEach((id, index) => {
+    db.update(albumPhotos).set({ sortOrder: index }).where(eq(albumPhotos.id, id)).run()
+  })
+
+  res.json({ ok: true })
 })
 
 albumsRouter.delete('/:id/photos/:photoId', requireAdmin, async (req, res) => {

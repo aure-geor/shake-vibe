@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS albums (
   tag TEXT NOT NULL,
   description TEXT NOT NULL DEFAULT '',
   published INTEGER NOT NULL DEFAULT 0,
+  sort_order INTEGER NOT NULL DEFAULT 0,
   created_at INTEGER NOT NULL,
   updated_at INTEGER NOT NULL
 );
@@ -58,7 +59,14 @@ CREATE TABLE IF NOT EXISTS album_photos (
   album_id INTEGER NOT NULL REFERENCES albums(id) ON DELETE CASCADE,
   filename TEXT NOT NULL,
   alt TEXT NOT NULL DEFAULT '',
+  sort_order INTEGER NOT NULL DEFAULT 0,
   created_at INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS site_content (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL,
+  updated_at INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS gallery_photos (
@@ -117,6 +125,8 @@ CREATE TABLE IF NOT EXISTS quote_requests (
 for (const statement of [
   'ALTER TABLE admin_users ADD COLUMN recovery_email TEXT',
   'ALTER TABLE admin_users ADD COLUMN password_changed_at INTEGER',
+  "ALTER TABLE albums ADD COLUMN sort_order INTEGER NOT NULL DEFAULT 0",
+  "ALTER TABLE album_photos ADD COLUMN sort_order INTEGER NOT NULL DEFAULT 0",
 ]) {
   try {
     sqlite.exec(statement)

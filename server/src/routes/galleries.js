@@ -78,6 +78,25 @@ galleriesRouter.post('/:section', requireAdmin, (req, res) => {
   })
 })
 
+galleriesRouter.patch('/reorder', requireAdmin, (req, res) => {
+  const { section, order } = req.body || {}
+  if (!GALLERY_SECTION_KEYS.has(section) || !Array.isArray(order)) {
+    return res.status(400).json({ error: 'Requête invalide.' })
+  }
+
+  const rows = db.select().from(galleryPhotos).where(eq(galleryPhotos.section, section)).all()
+  const validIds = new Set(rows.map((r) => r.id))
+  if (order.length !== rows.length || order.some((id) => !validIds.has(id))) {
+    return res.status(400).json({ error: "L'ordre fourni ne correspond pas aux photos de cette section." })
+  }
+
+  order.forEach((id, index) => {
+    db.update(galleryPhotos).set({ sortOrder: index }).where(eq(galleryPhotos.id, id)).run()
+  })
+
+  res.json({ ok: true })
+})
+
 galleriesRouter.delete('/photos/:id', requireAdmin, async (req, res) => {
   const id = Number(req.params.id)
   const photo = db.select().from(galleryPhotos).where(eq(galleryPhotos.id, id)).get()
