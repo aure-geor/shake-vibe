@@ -21,11 +21,10 @@ export function Prestations() {
         Nos réalisations
       </p>
       <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-        Des évènements sur-mesure, partout en France
+        Des évènements sur mesure, partout où vous nous emmenez
       </h1>
       <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-        Un aperçu de quelques prestations réalisées. Cliquez sur une vignette pour
-        découvrir l&apos;évènement en détail.
+        Découvrez quelques-unes des prestations réalisées par Shake &amp; Vibe.
       </p>
 
       {error && <p className="mt-10 text-center text-sm text-destructive">{error}</p>}

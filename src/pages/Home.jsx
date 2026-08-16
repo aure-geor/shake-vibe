@@ -77,10 +77,7 @@ export function Home() {
         )}
         <div className="relative mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
           <img src="/sunburst.png" alt="" className="mx-auto mb-6 h-16 w-auto sm:h-20" />
-          <p className="text-xs font-medium tracking-[0.3em] text-gold uppercase">
-            Notre conviction
-          </p>
-          <h1 className="mt-6 font-heading text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
             Le bar mobile qui transforme votre évènement en expérience
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">

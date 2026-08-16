@@ -65,7 +65,7 @@ export function PhotoCarousel({
                 type="button"
                 onClick={() => setLightboxIndex(index)}
                 aria-label="Agrandir la photo"
-                className="block w-full cursor-zoom-in"
+                className="block w-full cursor-pointer"
               >
                 <img
                   src={photo.url}

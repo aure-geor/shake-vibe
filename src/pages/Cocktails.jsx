@@ -39,9 +39,11 @@ export function Cocktails() {
         Des cocktails qui marquent les esprits
       </h1>
       <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
-        Des créations originales, entièrement adaptables et disponibles en version sans
-        alcool. Chaque recette est pensée pour sublimer vos évènements privés et
-        professionnels avec audace et élégance.
+        Des créations originales, pensées pour s&apos;adapter à votre évènement, à vos
+        envies et à votre univers.
+        <br />
+        Classiques revisités, créations signatures ou recettes entièrement sur mesure.
+        Chaque carte est imaginée pour offrir une véritable expérience à vos invités.
       </p>
 
       <div className="mt-14 grid gap-6 sm:grid-cols-3">
