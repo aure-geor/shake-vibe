@@ -86,7 +86,7 @@ export function Cocktails() {
       )}
 
       <Separator className="my-16 bg-gold/15" />
-      <div className="relative overflow-hidden rounded-2xl">
+      <div className="relative min-h-[480px] overflow-hidden rounded-2xl sm:min-h-[560px]">
         {images['cocktails-vin-fond'] && (
           <>
             <img
@@ -99,7 +99,7 @@ export function Cocktails() {
             <div className="absolute inset-0 bg-black/75" />
           </>
         )}
-        <div className="relative px-6 py-16 text-center sm:py-20">
+        <div className="relative flex min-h-[480px] flex-col justify-center px-6 py-16 text-center sm:min-h-[560px] sm:py-20">
           <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
             {t('cocktails.wine.eyebrow')}
           </p>
