@@ -1,10 +1,10 @@
 export const SITE_URL = 'https://shakeandvibe.com'
 export const SITE_NAME = 'Shake & Vibe'
-const DEFAULT_OG_IMAGE = `${SITE_URL}/banniere.png`
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`
 
 const PAGES = {
   '/': {
-    title: 'Shake & Vibe — Barman privé & cocktails sur-mesure pour vos événements',
+    title: 'Shake & Vibe Barman privé pour vos évènements.',
     description:
       'Barman privé pour mariages, événements privés, séminaires et ateliers cocktails partout en France. Devis personnalisé, cocktails sur-mesure, prestation haut de gamme.',
   },
