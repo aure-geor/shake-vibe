@@ -56,8 +56,19 @@ app.use('/api/galleries', galleriesRouter)
 app.use('/api/admin', adminRouter)
 app.use('/api/content', contentRouter)
 
-app.use('/uploads', express.static(UPLOADS_DIR, { maxAge: '30d', immutable: true }))
-app.use(express.static(path.join(__dirname, 'public'), { index: false }))
+// Les images (photos, logo, image de partage) sont publiques par nature et
+// doivent pouvoir être affichées par des sites tiers (réseaux sociaux, outils
+// d'aperçu de lien) — sans ça, le CORP "same-origin" par défaut de Helmet
+// bloque leur chargement en <img> cross-origin dans le navigateur. Ciblé via
+// setHeaders (appelé uniquement quand un fichier est réellement servi) pour
+// ne pas affaiblir la politique par défaut sur le reste (API, HTML).
+const setCrossOriginHeader = (res) => res.set('Cross-Origin-Resource-Policy', 'cross-origin')
+
+app.use(
+  '/uploads',
+  express.static(UPLOADS_DIR, { maxAge: '30d', immutable: true, setHeaders: setCrossOriginHeader })
+)
+app.use(express.static(path.join(__dirname, 'public'), { index: false, setHeaders: setCrossOriginHeader }))
 
 const INDEX_HTML_TEMPLATE = readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf-8')
   .replace(/<title>.*?<\/title>/s, '')
