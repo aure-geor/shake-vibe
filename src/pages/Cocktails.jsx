@@ -86,24 +86,40 @@ export function Cocktails() {
       )}
 
       <Separator className="my-16 bg-gold/15" />
-      <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
-        {t('cocktails.wine.eyebrow')}
-      </p>
-      <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
-        {t('cocktails.wine.title')}
-      </h2>
-      <p className="mx-auto mt-4 max-w-2xl text-center whitespace-pre-line text-white/65">
-        {t('cocktails.wine.subtitle')}
-      </p>
-      <div className="mt-8 flex justify-center">
-        <Button
-          render={<a href="/carte-vins.jpg" download />}
-          nativeButton={false}
-          size="lg"
-          className="h-auto max-w-xl bg-gold py-4 text-center text-black whitespace-normal hover:bg-gold/90"
-        >
-          {t('cocktails.wine.download_cta')}
-        </Button>
+      <div className="relative overflow-hidden rounded-2xl">
+        {images['cocktails-vin-fond'] && (
+          <>
+            <img
+              src={images['cocktails-vin-fond'].url}
+              alt={images['cocktails-vin-fond'].alt}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/75" />
+          </>
+        )}
+        <div className="relative px-6 py-16 text-center sm:py-20">
+          <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
+            {t('cocktails.wine.eyebrow')}
+          </p>
+          <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+            {t('cocktails.wine.title')}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center whitespace-pre-line text-white/65">
+            {t('cocktails.wine.subtitle')}
+          </p>
+          <div className="mt-8 flex justify-center">
+            <Button
+              render={<a href="/carte-vins.jpg" download />}
+              nativeButton={false}
+              size="lg"
+              className="h-auto max-w-xl bg-gold py-4 text-center text-black whitespace-normal hover:bg-gold/90"
+            >
+              {t('cocktails.wine.download_cta')}
+            </Button>
+          </div>
+        </div>
       </div>
       {winePhotos.length > 0 && (
         <PhotoCarousel

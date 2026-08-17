@@ -62,6 +62,12 @@ export const SITE_IMAGE_SLOTS = [
     page: 'Nos cocktails',
     hint: 'Format carré ou portrait.',
   },
+  {
+    key: 'cocktails-vin-fond',
+    label: 'Cocktails aux vins du domaine (fond de section)',
+    page: 'Nos cocktails',
+    hint: 'Format paysage large.',
+  },
 ]
 
 export const SITE_IMAGE_SLOT_KEYS = new Set(SITE_IMAGE_SLOTS.map((s) => s.key))
