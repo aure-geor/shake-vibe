@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react'
-import { api } from '@/lib/api'
-import { PrestationCard } from '@/components/PrestationCard'
-import { PrestationDialog } from '@/components/PrestationDialog'
+import { useGallery } from '@/hooks/useGallery'
 import { useSiteContent } from '@/hooks/useSiteContent'
+import { PhotoCarousel } from '@/components/PhotoCarousel'
 
 export function Prestations() {
   const t = useSiteContent()
-  const [selected, setSelected] = useState(null)
-  const [albums, setAlbums] = useState(null)
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    api
-      .get('/api/albums')
-      .then(setAlbums)
-      .catch((e) => setError(e.message))
-  }, [])
+  const photos = useGallery('prestations')
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
@@ -29,24 +18,21 @@ export function Prestations() {
         {t('prestations.subtitle')}
       </p>
 
-      {error && <p className="mt-10 text-center text-sm text-destructive">{error}</p>}
-      {!albums && !error && <p className="mt-10 text-center text-white/50">Chargement…</p>}
-      {albums?.length === 0 && (
-        <p className="mt-10 text-center text-white/50">
+      {photos.length === 0 ? (
+        <p className="mt-14 text-center text-white/50">
           Aucune réalisation publiée pour le moment.
         </p>
+      ) : (
+        <PhotoCarousel
+          photos={photos}
+          aspect="aspect-2/3"
+          fit="contain"
+          itemBasis="basis-[68%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+          gap="gap-3"
+          showDots={false}
+          className="mt-14"
+        />
       )}
-
-      <div className="mt-14 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
-        {albums?.map((album) => (
-          <PrestationCard key={album.id} prestation={album} onOpen={setSelected} />
-        ))}
-      </div>
-
-      <PrestationDialog
-        prestation={selected}
-        onOpenChange={(open) => !open && setSelected(null)}
-      />
     </div>
   )
 }

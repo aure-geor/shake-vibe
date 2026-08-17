@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { KeyRound, Loader2, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { AlbumsPanel } from '@/components/admin/AlbumsPanel'
 import { EmplacementsPanel } from '@/components/admin/EmplacementsPanel'
 import { GaleriePanel } from '@/components/admin/GaleriePanel'
 import { PhotosPanel } from '@/components/admin/PhotosPanel'
@@ -13,9 +12,8 @@ import { cn } from '@/lib/utils'
 
 const TABS = [
   { id: 'contenu', label: 'Contenu', Panel: ContenuPanel },
-  { id: 'albums', label: 'Réalisations', Panel: AlbumsPanel },
-  { id: 'emplacements', label: 'Emplacements', Panel: EmplacementsPanel },
   { id: 'galerie', label: 'Galerie', Panel: GaleriePanel },
+  { id: 'emplacements', label: 'Emplacements', Panel: EmplacementsPanel },
   { id: 'photos', label: 'Photos', Panel: PhotosPanel },
 ]
 
@@ -41,7 +39,7 @@ export function AdminDashboard() {
     )
   }
 
-  const ActivePanel = TABS.find((t) => t.id === tab)?.Panel ?? AlbumsPanel
+  const ActivePanel = TABS.find((t) => t.id === tab)?.Panel ?? ContenuPanel
 
   return (
     <div className="min-h-screen bg-black text-white">

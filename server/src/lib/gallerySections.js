@@ -3,6 +3,11 @@
 // mais ne peut pas créer de nouvelle section.
 export const GALLERY_SECTIONS = [
   {
+    key: 'prestations',
+    label: 'Réalisations (carrousel)',
+    page: 'Nos prestations',
+  },
+  {
     key: 'cocktails-menu',
     label: 'Carte des cocktails (carrousel)',
     page: 'Nos cocktails',
