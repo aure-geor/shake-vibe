@@ -41,6 +41,8 @@ export function Cocktails() {
                 <img
                   src={image.url}
                   alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="aspect-4/5 w-full object-cover"
                 />
               )}
@@ -95,7 +97,7 @@ export function Cocktails() {
       </p>
       <div className="mt-8 flex justify-center">
         <Button
-          render={<a href="/carte-vins.png" download />}
+          render={<a href="/carte-vins.jpg" download />}
           nativeButton={false}
           size="lg"
           className="h-auto max-w-xl bg-gold py-4 text-center text-black whitespace-normal hover:bg-gold/90"

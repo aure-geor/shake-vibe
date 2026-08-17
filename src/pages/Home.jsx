@@ -40,6 +40,8 @@ export function Home() {
             <img
               src={hero.url}
               alt={hero.alt}
+              fetchPriority="high"
+              decoding="async"
               className="absolute inset-0 size-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" />
@@ -129,6 +131,8 @@ export function Home() {
                     <img
                       src={image.url}
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="aspect-4/5 w-full object-cover"
                     />
                   )}

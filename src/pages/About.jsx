@@ -72,6 +72,8 @@ export function About() {
             <img
               src={surMesure.url}
               alt={surMesure.alt}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 size-full object-cover"
             />
             <div className="absolute inset-0 bg-black/75" />

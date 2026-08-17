@@ -68,7 +68,26 @@ app.use(
   '/uploads',
   express.static(UPLOADS_DIR, { maxAge: '30d', immutable: true, setHeaders: setCrossOriginHeader })
 )
-app.use(express.static(path.join(__dirname, 'public'), { index: false, setHeaders: setCrossOriginHeader }))
+// Les fichiers dans /assets sont générés par Vite avec un hash dans leur nom
+// (index-XXXXX.js) : leur contenu ne change jamais sous une même URL, donc un
+// cache long et immuable est sûr et évite un aller-retour réseau à chaque
+// visite. Les autres fichiers publics (logo, favicon, images…) ne sont pas
+// hashés et peuvent être remplacés sans changer de nom : cache plus court.
+app.use(
+  '/assets',
+  express.static(path.join(__dirname, 'public', 'assets'), {
+    maxAge: '1y',
+    immutable: true,
+    setHeaders: setCrossOriginHeader,
+  })
+)
+app.use(
+  express.static(path.join(__dirname, 'public'), {
+    index: false,
+    maxAge: '1h',
+    setHeaders: setCrossOriginHeader,
+  })
+)
 
 const INDEX_HTML_TEMPLATE = readFileSync(path.join(__dirname, 'public', 'index.html'), 'utf-8')
   .replace(/<title>.*?<\/title>/s, '')

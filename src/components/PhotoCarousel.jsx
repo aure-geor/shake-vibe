@@ -70,6 +70,8 @@ export function PhotoCarousel({
                 <img
                   src={photo.url}
                   alt={photo.alt}
+                  loading="lazy"
+                  decoding="async"
                   className={cn(
                     'w-full rounded-xl',
                     fit === 'contain' ? 'bg-black object-contain' : 'object-cover',
