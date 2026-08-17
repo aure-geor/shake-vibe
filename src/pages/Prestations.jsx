@@ -1,6 +1,7 @@
 import { useGallery } from '@/hooks/useGallery'
 import { useSiteContent } from '@/hooks/useSiteContent'
 import { PhotoCarousel } from '@/components/PhotoCarousel'
+import { Button } from '@/components/ui/button'
 
 export function Prestations() {
   const t = useSiteContent()
@@ -23,15 +24,27 @@ export function Prestations() {
           Aucune réalisation publiée pour le moment.
         </p>
       ) : (
-        <PhotoCarousel
-          photos={photos}
-          aspect="aspect-2/3"
-          fit="contain"
-          itemBasis="basis-[68%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-          gap="gap-3"
-          showDots={false}
-          className="mt-14"
-        />
+        <>
+          <PhotoCarousel
+            photos={photos}
+            aspect="aspect-2/3"
+            fit="contain"
+            itemBasis="basis-[68%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+            gap="gap-3"
+            showDots={false}
+            className="mt-14"
+          />
+          <div className="mt-8 flex justify-center">
+            <Button
+              render={<a href={t('links.instagram')} target="_blank" rel="noopener noreferrer" />}
+              nativeButton={false}
+              size="lg"
+              className="bg-gold text-black hover:bg-gold/90"
+            >
+              {t('prestations.instagram_cta')}
+            </Button>
+          </div>
+        </>
       )}
     </div>
   )

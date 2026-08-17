@@ -294,6 +294,12 @@ export const CONTENT_SCHEMA = [
         type: 'textarea',
         fallback: 'Découvrez quelques-unes des prestations réalisées par Shake & Vibe.',
       },
+      {
+        key: 'prestations.instagram_cta',
+        label: 'Texte du bouton vers Instagram',
+        type: 'text',
+        fallback: 'Plus de contenus ici',
+      },
     ],
   },
   {
