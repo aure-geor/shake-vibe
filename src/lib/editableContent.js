@@ -21,7 +21,7 @@ export const CONTENT_SCHEMA = [
         key: 'home.hero.title',
         label: 'Titre principal',
         type: 'text',
-        fallback: 'Le bar mobile qui transforme votre évènement en expérience',
+        fallback: 'Le barman privé à domicile qui transforme votre évènement en expérience',
       },
       {
         key: 'home.hero.subtitle',
@@ -217,7 +217,7 @@ export const CONTENT_SCHEMA = [
         label: 'Deuxième paragraphe',
         type: 'textarea',
         fallback:
-          "Cette expertise s'est forgée au fil de voyages en Amérique centrale, au Brésil et dans les Caraïbes, berceau des plus grandes traditions de bar. De retour en France, une conviction s'impose : un cocktail ne se boit pas, il se vit. C'est cette philosophie qui a donné naissance à Shake & Vibe.",
+          "Cette expertise s'est forgée au fil de voyages en Amérique centrale, au Brésil et dans les Caraïbes, berceau des plus grandes traditions de bar. De retour en France, une conviction s'impose : un cocktail ne se boit pas, il se vit. C'est cette philosophie qui a donné naissance à Shake & Vibe, un service de barman privé à domicile pour vos évènements, partout en France.",
       },
       {
         key: 'about.journey.title',
@@ -292,7 +292,7 @@ export const CONTENT_SCHEMA = [
         key: 'prestations.subtitle',
         label: 'Sous-titre de la page',
         type: 'textarea',
-        fallback: 'Découvrez quelques-unes des prestations réalisées par Shake & Vibe.',
+        fallback: 'Découvrez quelques-unes de nos prestations de barman privé à domicile, partout en France.',
       },
       {
         key: 'prestations.instagram_cta',
