@@ -33,7 +33,7 @@ export function SiteFooter() {
       <div className="border-t border-white/5">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-xs tracking-wide text-white/40 uppercase">
-            © {new Date().getFullYear()} Shake &amp; Vibe — Barman privé pour vos évènements
+            © {new Date().getFullYear()} Shake &amp; Vibe — Barman privé à domicile pour vos évènements
           </p>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs text-white/40 sm:justify-end">
             <Link to="/mentions-legales" className="transition-colors hover:text-gold">
