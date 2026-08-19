@@ -484,11 +484,248 @@ export const CONTENT_SCHEMA = [
     fields: [
       { key: 'legal.cgv.title', label: 'Titre de la page', type: 'text', fallback: 'Conditions générales de vente' },
       {
-        key: 'legal.cgv.body',
-        label: 'Texte de la page',
+        key: 'legal.cgv.updated',
+        label: 'Date de mise à jour',
+        type: 'text',
+        fallback: 'Dernière mise à jour : août 2026',
+      },
+      { key: 'legal.cgv.s1.title', label: 'Section 1 — titre', type: 'text', fallback: 'Article 1 – Objet' },
+      {
+        key: 'legal.cgv.s1.body',
+        label: 'Section 1 — texte',
         type: 'textarea',
         fallback:
-          'Cette page est en cours de rédaction. Les conditions générales de vente de Shake & Vibe seront prochainement disponibles ici.',
+          "Les présentes Conditions Générales de Vente (CGV) ont pour objet de définir les conditions dans lesquelles Shake & Vibe propose et réalise ses prestations événementielles, notamment : bar à cocktails événementiel, cocktails et mocktails, bar mobile, flair bartending, animations cocktails, ateliers et prestations associées.\n\nLe site internet de Shake & Vibe a notamment pour objet de présenter les prestations proposées et de permettre aux visiteurs d'effectuer une demande de renseignements ou de devis.\n\nL'envoi d'une demande via le site internet ne constitue ni une commande ni une réservation ferme.\n\nToute prestation fait l'objet d'un devis personnalisé dans les conditions définies ci-dessous.",
+      },
+      { key: 'legal.cgv.s2.title', label: 'Section 2 — titre', type: 'text', fallback: "Article 2 – Champ d'application" },
+      {
+        key: 'legal.cgv.s2.body',
+        label: 'Section 2 — texte',
+        type: 'textarea',
+        fallback:
+          'Les présentes CGV s\'appliquent aux prestations réalisées par Shake & Vibe auprès de clients particuliers et professionnels.\n\nCertaines dispositions peuvent différer selon la qualité du client lorsque cela est expressément précisé.\n\nLa signature ou l\'acceptation du devis entraîne l\'acceptation pleine et entière des présentes CGV par le client.',
+      },
+      { key: 'legal.cgv.s3.title', label: 'Section 3 — titre', type: 'text', fallback: 'Article 3 – Demande de devis et devis' },
+      {
+        key: 'legal.cgv.s3.body',
+        label: 'Section 3 — texte',
+        type: 'textarea',
+        fallback:
+          "Toute demande effectuée par l'intermédiaire du site internet, par téléphone, par courrier électronique, via les réseaux sociaux ou par tout autre moyen constitue uniquement une demande d'information ou de devis et n'entraîne aucune réservation automatique de la date souhaitée.\n\nChaque prestation fait l'objet d'un devis personnalisé établi notamment en fonction de la date, du lieu, du nombre de participants, de la formule choisie et des prestations demandées.\n\nSauf mention contraire, les devis émis par Shake & Vibe sont valables pendant 30 jours à compter de leur date d'émission, sous réserve de la disponibilité de la date au moment de la confirmation.",
+      },
+      { key: 'legal.cgv.s4.title', label: 'Section 4 — titre', type: 'text', fallback: 'Article 4 – Réservation et acompte' },
+      {
+        key: 'legal.cgv.s4.body',
+        label: 'Section 4 — texte',
+        type: 'textarea',
+        fallback:
+          "Pour les clients particuliers, un acompte correspondant à 30 % du montant TTC de la prestation est demandé afin de confirmer la réservation.\n\nPour les clients professionnels, Shake & Vibe peut demander un acompte lorsque celui-ci est prévu au devis.\n\nLa réservation devient définitive après acceptation du devis et réception de l'acompte lorsqu'un acompte est prévu.\n\nTant que ces conditions ne sont pas réunies, la date n'est pas considérée comme définitivement réservée et Shake & Vibe reste libre d'accepter une autre prestation à cette même date.",
+      },
+      { key: 'legal.cgv.s5.title', label: 'Section 5 — titre', type: 'text', fallback: 'Article 5 – Tarifs' },
+      {
+        key: 'legal.cgv.s5.body',
+        label: 'Section 5 — texte',
+        type: 'textarea',
+        fallback:
+          "Les tarifs applicables sont ceux figurant sur le devis accepté par le client.\n\nLes tarifs sont établis en fonction des caractéristiques propres à chaque événement et notamment du nombre de participants, du lieu, de la durée, de la formule choisie, des cocktails sélectionnés et des prestations complémentaires demandées.\n\nLes éventuels frais de déplacement et prestations supplémentaires sont précisés sur le devis.\n\nLes tarifs ou mentions « à partir de » éventuellement présentés sur le site internet sont donnés à titre indicatif et ne constituent pas une offre contractuelle.",
+      },
+      { key: 'legal.cgv.s6.title', label: 'Section 6 — titre', type: 'text', fallback: 'Article 6 – Paiement' },
+      {
+        key: 'legal.cgv.s6.body',
+        label: 'Section 6 — texte',
+        type: 'textarea',
+        fallback:
+          "Sauf disposition particulière indiquée sur le devis ou la facture, le solde de la prestation est payable au plus tard le jour de la prestation, avant son commencement.\n\nLes moyens de paiement acceptés sont notamment :\nvirement bancaire ;\nchèque ;\nespèces.\n\nToute condition de paiement particulière figurant sur le devis accepté prévaut sur les présentes dispositions.",
+      },
+      { key: 'legal.cgv.s7.title', label: 'Section 7 — titre', type: 'text', fallback: 'Article 7 – Annulation par le client' },
+      {
+        key: 'legal.cgv.s7.body',
+        label: 'Section 7 — texte',
+        type: 'textarea',
+        fallback:
+          "Toute annulation doit être communiquée à Shake & Vibe par écrit.\n\nEn cas d'annulation par le client :\nPlus de 30 jours avant : l'acompte de 30 % reste acquis.\nEntre 30 et 8 jours avant : 50 % du montant total est dû.\n7 jours ou moins avant : 100 % du montant total est dû.\n\nLes sommes déjà versées sont imputées sur les montants restants éventuellement dus.\n\nCes conditions tiennent notamment compte de la réservation de la date, de l'organisation préalable de l'événement, des achats, des préparatifs et de l'impossibilité éventuelle pour Shake & Vibe d'accepter une autre prestation sur la date réservée.",
+      },
+      { key: 'legal.cgv.s8.title', label: 'Section 8 — titre', type: 'text', fallback: 'Article 8 – Report de la prestation' },
+      {
+        key: 'legal.cgv.s8.body',
+        label: 'Section 8 — texte',
+        type: 'textarea',
+        fallback:
+          "Toute demande de report formulée par le client est étudiée en fonction des disponibilités de Shake & Vibe.\n\nLe report n'est jamais automatique et doit faire l'objet d'un accord écrit entre les parties.\n\nLes éventuels frais déjà engagés ou différences tarifaires résultant du changement de date, de lieu ou des caractéristiques de la prestation pourront faire l'objet d'une facturation complémentaire.",
+      },
+      { key: 'legal.cgv.s9.title', label: 'Section 9 — titre', type: 'text', fallback: 'Article 9 – Modification de la prestation' },
+      {
+        key: 'legal.cgv.s9.body',
+        label: 'Section 9 — texte',
+        type: 'textarea',
+        fallback:
+          "Toute modification concernant notamment le nombre de participants, les horaires, le lieu, la formule choisie ou les prestations demandées doit être communiquée à Shake & Vibe dans les meilleurs délais.\n\nUne augmentation du nombre de participants ou l'ajout de prestations pourra entraîner l'établissement d'un devis complémentaire.\n\nUne diminution du nombre de participants devra intervenir avant que les achats et préparatifs correspondants aient été engagés. Dans le cas contraire, les montants déjà engagés ou facturés pourront rester dus.\n\nToute modification reste soumise à la faisabilité technique et aux disponibilités de Shake & Vibe.",
+      },
+      { key: 'legal.cgv.s10.title', label: 'Section 10 — titre', type: 'text', fallback: 'Article 10 – Dépassement des horaires' },
+      {
+        key: 'legal.cgv.s10.body',
+        label: 'Section 10 — texte',
+        type: 'textarea',
+        fallback:
+          "Les horaires prévus sont ceux mentionnés sur le devis accepté.\n\nToute demande de prolongation de la prestation est soumise à l'accord et aux disponibilités de Shake & Vibe.\n\nToute prolongation pourra donner lieu à une facturation complémentaire.",
+      },
+      { key: 'legal.cgv.s11.title', label: 'Section 11 — titre', type: 'text', fallback: 'Article 11 – Déplacements' },
+      {
+        key: 'legal.cgv.s11.body',
+        label: 'Section 11 — texte',
+        type: 'textarea',
+        fallback:
+          "Sauf indication contraire figurant sur le devis, les 20 premiers kilomètres sont inclus dans le tarif de la prestation.\n\nAu-delà, les éventuels frais de déplacement sont indiqués sur le devis.\n\nDes frais supplémentaires peuvent également être prévus lorsque les caractéristiques du déplacement l'exigent, notamment en cas de péages, stationnement ou déplacement nécessitant des conditions particulières. Ils sont alors précisés au client.",
+      },
+      { key: 'legal.cgv.s12.title', label: 'Section 12 — titre', type: 'text', fallback: 'Article 12 – Conditions météorologiques' },
+      {
+        key: 'legal.cgv.s12.body',
+        label: 'Section 12 — texte',
+        type: 'textarea',
+        fallback:
+          "Pour toute prestation organisée en extérieur, le client s'engage à prévoir une solution de repli adaptée permettant la réalisation de la prestation en cas de conditions météorologiques défavorables.\n\nLe matériel et le personnel de Shake & Vibe ne pourront être exposés à des conditions susceptibles de compromettre leur sécurité ou d'endommager le matériel.\n\nLorsque les conditions météorologiques empêchent la réalisation de la prestation dans des conditions normales et qu'aucune solution de repli adaptée n'a été prévue, Shake & Vibe et le client rechercheront prioritairement une solution amiable, notamment un éventuel report lorsque celui-ci est possible.\n\nÀ défaut de solution, les conditions d'annulation prévues aux présentes CGV pourront s'appliquer.",
+      },
+      { key: 'legal.cgv.s13.title', label: 'Section 13 — titre', type: 'text', fallback: 'Article 13 – Installation et accès' },
+      {
+        key: 'legal.cgv.s13.body',
+        label: 'Section 13 — texte',
+        type: 'textarea',
+        fallback:
+          "Le client s'engage à mettre à disposition de Shake & Vibe un emplacement adapté à la prestation réservée.\n\nIl garantit notamment un accès suffisant au lieu de l'événement pour permettre l'installation, le déchargement, le chargement et le démontage du matériel.\n\nLe client est également responsable de l'obtention des autorisations éventuellement nécessaires à l'organisation de l'événement et à l'installation de la prestation sur le lieu choisi.\n\nLes éventuels besoins techniques spécifiques sont précisés préalablement entre les parties.",
+      },
+      { key: 'legal.cgv.s14.title', label: 'Section 14 — titre', type: 'text', fallback: 'Article 14 – Sécurité' },
+      {
+        key: 'legal.cgv.s14.body',
+        label: 'Section 14 — texte',
+        type: 'textarea',
+        fallback:
+          "Shake & Vibe se réserve le droit de suspendre ou d'interrompre tout ou partie de la prestation lorsque les conditions de sécurité ne permettent plus d'assurer normalement le service ou présentent un risque pour les personnes ou le matériel.\n\nLe client s'engage à veiller au respect du matériel et du personnel de Shake & Vibe par les participants et autres prestataires présents lors de l'événement.",
+      },
+      {
+        key: 'legal.cgv.s15.title',
+        label: 'Section 15 — titre',
+        type: 'text',
+        fallback: 'Article 15 - Service et consommation de boissons alcoolisées',
+      },
+      {
+        key: 'legal.cgv.s15.body',
+        label: 'Section 15 — texte',
+        type: 'textarea',
+        fallback:
+          "Dans le cadre des prestations comprenant le service de boissons alcoolisées, Shake & Vibe se réserve le droit de refuser de servir toute personne mineure, manifestement en état d'ébriété ou présentant un comportement susceptible de mettre en danger sa sécurité ou celle d'autrui.\nLe client demeure responsable du comportement de ses invités et participants ainsi que du respect des règles applicables à l'événement.\n\nLe service réalisé par Shake & Vibe est effectué dans le cadre et les limites de la prestation définie au devis et conformément à la réglementation applicable.",
+      },
+      { key: 'legal.cgv.s16.title', label: 'Section 16 — titre', type: 'text', fallback: 'Article 16 – Matériel' },
+      {
+        key: 'legal.cgv.s16.body',
+        label: 'Section 16 — texte',
+        type: 'textarea',
+        fallback:
+          "Le bar mobile, la verrerie, les équipements et plus généralement le matériel mis à disposition dans le cadre de la prestation demeurent la propriété de Shake & Vibe.\n\nLe client s'engage à respecter le matériel et à veiller, dans la mesure du raisonnable, à son respect par ses invités et les autres prestataires présents.\n\nEn cas de perte, casse, dégradation ou détérioration importante résultant d'une faute, d'une négligence ou d'un usage anormal imputable au client, à ses invités ou à ses prestataires, Shake & Vibe pourra facturer les frais nécessaires à la réparation ou au remplacement du matériel concerné.",
+      },
+      { key: 'legal.cgv.s17.title', label: 'Section 17 — titre', type: 'text', fallback: 'Article 17 – Obligations de Shake & Vibe' },
+      {
+        key: 'legal.cgv.s17.body',
+        label: 'Section 17 — texte',
+        type: 'textarea',
+        fallback:
+          "Shake & Vibe s'engage à mettre en œuvre les moyens humains et matériels nécessaires à la bonne exécution de la prestation conformément au devis accepté.\n\nShake & Vibe s'engage à réaliser la prestation avec professionnalisme et conformément aux caractéristiques convenues avec le client.",
+      },
+      { key: 'legal.cgv.s18.title', label: 'Section 18 — titre', type: 'text', fallback: 'Article 18 – Responsabilité' },
+      {
+        key: 'legal.cgv.s18.body',
+        label: 'Section 18 — texte',
+        type: 'textarea',
+        fallback:
+          "Shake & Vibe est tenue à une obligation de moyens dans l'exécution de ses prestations.\n\nSa responsabilité ne pourra être engagée pour les conséquences résultant notamment :\nd'informations incorrectes ou incomplètes transmises par le client ;\nd'un manquement du client à ses obligations ;\ndu comportement d'un participant ou d'un autre prestataire ;\nd'une impossibilité d'accès ou d'installation non signalée préalablement ;\nd'un événement relevant de la force majeure.\n\nAucune disposition des présentes CGV n'a pour objet d'exclure ou de limiter une responsabilité qui ne pourrait légalement être exclue ou limitée.",
+      },
+      { key: 'legal.cgv.s19.title', label: 'Section 19 — titre', type: 'text', fallback: 'Article 19 – Force majeure' },
+      {
+        key: 'legal.cgv.s19.body',
+        label: 'Section 19 — texte',
+        type: 'textarea',
+        fallback:
+          "Aucune des parties ne pourra être tenue responsable d'un manquement à ses obligations lorsque celui-ci résulte d'un événement de force majeure au sens de l'article 1218 du Code civil.\n\nDans une telle situation, Shake & Vibe et le client rechercheront prioritairement une solution amiable permettant, lorsque cela est possible, le report ou l'adaptation de la prestation.",
+      },
+      {
+        key: 'legal.cgv.s20.title',
+        label: 'Section 20 — titre',
+        type: 'text',
+        fallback: 'Article 20 – Droit de rétractation des consommateurs',
+      },
+      {
+        key: 'legal.cgv.s20.body',
+        label: 'Section 20 — texte',
+        type: 'textarea',
+        fallback:
+          "Lorsque le contrat est conclu à distance ou hors établissement avec un client consommateur, celui-ci bénéficie du droit de rétractation prévu par le Code de la consommation lorsqu'il est applicable.\n\nToutefois, conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne peut notamment pas être exercé pour certaines prestations d'activités de loisirs devant être fournies à une date ou à une période déterminée.\n\nLorsque la prestation réservée auprès de Shake & Vibe relève d'une exception légale au droit de rétractation, le client en est informé.\n\nLes présentes dispositions ne privent en aucun cas le consommateur des droits impératifs qui lui sont reconnus par la législation applicable.",
+      },
+      { key: 'legal.cgv.s21.title', label: 'Section 21 — titre', type: 'text', fallback: "Article 21 – Droit à l'image" },
+      {
+        key: 'legal.cgv.s21.body',
+        label: 'Section 21 — texte',
+        type: 'textarea',
+        fallback:
+          "Shake & Vibe peut être amenée à réaliser des photographies ou vidéos de ses installations, cocktails, animations ou prestations à des fins de communication et de promotion de son activité.\n\nLe client peut s'opposer par écrit, avant la prestation, à l'utilisation d'images permettant de l'identifier personnellement ou concernant un événement dont il souhaite préserver le caractère privé.\n\nL'utilisation de l'image identifiable de toute personne reste soumise aux règles applicables au droit à l'image et au respect de la vie privée.",
+      },
+      {
+        key: 'legal.cgv.s22.title',
+        label: 'Section 22 — titre',
+        type: 'text',
+        fallback: 'Article 22 – Protection des données personnelles',
+      },
+      {
+        key: 'legal.cgv.s22.body',
+        label: 'Section 22 — texte',
+        type: 'textarea',
+        fallback:
+          "Shake & Vibe collecte et traite les données personnelles nécessaires notamment à :\nla gestion des demandes de contact et de devis ;\nl'établissement des devis ;\nl'organisation et l'exécution des prestations ;\nla gestion de la relation client ;\nla facturation et la comptabilité ;\nle respect de ses obligations légales.\n\nLes données sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées ainsi que pendant les durées imposées par les obligations légales applicables.\n\nConformément à la réglementation relative à la protection des données personnelles, les personnes concernées disposent notamment, selon les conditions applicables, de droits d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité.\n\nCes droits peuvent être exercés en contactant Shake & Vibe aux coordonnées indiquées sur le site internet.\n\nLes données personnelles ne sont ni vendues ni cédées à des tiers à des fins commerciales.\n\nDes informations complémentaires concernant le traitement des données personnelles sont disponibles dans la Politique de confidentialité du site internet.",
+      },
+      {
+        key: 'legal.cgv.s23.title',
+        label: 'Section 23 — titre',
+        type: 'text',
+        fallback: 'Article 23 – Retard de paiement – Clients professionnels',
+      },
+      {
+        key: 'legal.cgv.s23.body',
+        label: 'Section 23 — texte',
+        type: 'textarea',
+        fallback:
+          "En cas de retard de paiement d'un client professionnel, les pénalités de retard prévues par les dispositions applicables du Code de commerce seront exigibles.\n\nUne indemnité forfaitaire de 40 € pour frais de recouvrement sera également due de plein droit pour chaque facture payée en retard, sans préjudice de toute indemnisation complémentaire pouvant être réclamée lorsque les frais de recouvrement effectivement engagés sont supérieurs à ce montant, dans les conditions prévues par la réglementation.",
+      },
+      {
+        key: 'legal.cgv.s24.title',
+        label: 'Section 24 — titre',
+        type: 'text',
+        fallback: 'Article 24 – Réclamations et médiation de la consommation',
+      },
+      {
+        key: 'legal.cgv.s24.body',
+        label: 'Section 24 — texte',
+        type: 'textarea',
+        fallback:
+          "En cas de difficulté ou de réclamation concernant une prestation, le client est invité à contacter préalablement Shake & Vibe afin de rechercher une solution amiable.\n\nPour les clients consommateurs, conformément aux dispositions du Code de la consommation relatives à la médiation, le consommateur peut, après avoir adressé une réclamation écrite préalable à Shake & Vibe et en l'absence de résolution amiable du litige, recourir gratuitement au médiateur de la consommation dont relève Shake & Vibe.\n\nMédiateur de la consommation :\nNom : [À COMPLÉTER]\nAdresse : [À COMPLÉTER]\nSite internet : [À COMPLÉTER]\n\nCes informations seront complétées dès l'adhésion de Shake & Vibe à un dispositif de médiation de la consommation.",
+      },
+      {
+        key: 'legal.cgv.s25.title',
+        label: 'Section 25 — titre',
+        type: 'text',
+        fallback: 'Article 25 – Droit applicable et règlement des litiges',
+      },
+      {
+        key: 'legal.cgv.s25.body',
+        label: 'Section 25 — texte',
+        type: 'textarea',
+        fallback:
+          "Les présentes Conditions Générales de Vente sont soumises au droit français.\n\nEn cas de différend, les parties s'engagent à rechercher prioritairement une solution amiable.\n\nPour les clients consommateurs, les règles légales impératives relatives à la compétence juridictionnelle demeurent applicables.\n\nPour les clients professionnels, les règles de compétence applicables seront celles prévues par la législation en vigueur, sauf clause particulière valablement convenue entre les parties.",
+      },
+      { key: 'legal.cgv.s26.title', label: 'Section 26 — titre', type: 'text', fallback: 'Informations sur Shake & Vibe' },
+      {
+        key: 'legal.cgv.s26.body',
+        label: 'Section 26 — texte',
+        type: 'textarea',
+        fallback:
+          "Nom commercial : Shake & Vibe\nSIRET : 990 511 636 00013\nRCS : RCS Toulon 990 511 636\nAdresse : 105 Chemin du Beausset au Castellet - Résidence les vents d'anges Bât A4 - 83330 LE BEAUSSET\nE-mail : contact.shakeandvibe@gmail.com\nTéléphone : 06 62 28 02 69",
       },
     ],
   },

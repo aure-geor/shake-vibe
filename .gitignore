@@ -15,6 +15,9 @@ dist-ssr
 # Notes privées / infra (jamais publiques)
 .claude/vps/
 .claude/photos-a-integrer/
+.claude/CGV.md
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
 
 # Backend
 server/.env
