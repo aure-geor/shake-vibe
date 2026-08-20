@@ -73,7 +73,7 @@ siteImagesRouter.post('/:key', requireAdmin, (req, res) => {
       res.status(201).json({ url: `/uploads/${filename}`, alt })
     } catch (e) {
       console.error('[site-images] traitement image échoué :', e.message)
-      res.status(500).json({ error: "Le traitement de l'image a échoué." })
+      res.status(500).json({ error: e.message.startsWith('Cette photo') ? e.message : "Le traitement de l'image a échoué." })
     }
   })
 })

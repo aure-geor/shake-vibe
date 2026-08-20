@@ -24,10 +24,19 @@ export const uploadPhoto = multer({
 export async function saveResizedPhoto(buffer) {
   const filename = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}.webp`
   const filePath = path.join(UPLOADS_DIR, filename)
-  await sharp(buffer)
-    .rotate()
-    .resize({ width: 2000, height: 2000, fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 82 })
-    .toFile(filePath)
+  try {
+    await sharp(buffer)
+      .rotate()
+      .resize({ width: 2000, height: 2000, fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toFile(filePath)
+  } catch (e) {
+    if (/heif|security limit/i.test(e.message)) {
+      throw new Error(
+        "Cette photo est dans un format HEIC/HEIF que le serveur ne peut pas traiter automatiquement (limite de sécurité de la bibliothèque de décodage). Exportez-la en JPEG depuis votre téléphone (sur iPhone : lors du partage, Options > Format > « Le plus compatible ») puis réessayez."
+      )
+    }
+    throw e
+  }
   return filename
 }

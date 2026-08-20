@@ -151,7 +151,7 @@ albumsRouter.post('/:id/photos', requireAdmin, (req, res) => {
       res.status(201).json({ id: row.lastInsertRowid, filename })
     } catch (e) {
       console.error('[albums] traitement image échoué :', e.message)
-      res.status(500).json({ error: "Le traitement de l'image a échoué." })
+      res.status(500).json({ error: e.message.startsWith('Cette photo') ? e.message : "Le traitement de l'image a échoué." })
     }
   })
 })
