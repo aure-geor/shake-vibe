@@ -42,6 +42,13 @@ const PAGES = {
   },
 }
 
+export const KNOWN_PATHS = new Set([
+  ...Object.keys(PAGES),
+  '/admin',
+  '/admin/connexion',
+  '/admin/mot-de-passe-oublie',
+])
+
 const LOCAL_BUSINESS_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',

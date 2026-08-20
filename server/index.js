@@ -15,7 +15,7 @@ import { galleriesRouter } from './src/routes/galleries.js'
 import { adminRouter } from './src/routes/admin.js'
 import { contentRouter } from './src/routes/content.js'
 import { UPLOADS_DIR } from './src/db/client.js'
-import { buildHead } from './src/lib/seo.js'
+import { buildHead, KNOWN_PATHS } from './src/lib/seo.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
@@ -97,7 +97,10 @@ app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/') || req.path.startsWith('/uploads/')) return next()
   const html = INDEX_HTML_TEMPLATE.replace('</head>', `${buildHead(req.path)}\n  </head>`)
   res.set('Content-Type', 'text/html')
-  res.send(html)
+  // Une route non reconnue renvoie un vrai 404 (au lieu d'un "soft 404" en 200) :
+  // Google déconseille explicitement ce cas de figure pour l'exploration/indexation.
+  // Le HTML de la SPA est quand même envoyé pour que la page "introuvable" s'affiche.
+  res.status(KNOWN_PATHS.has(req.path) ? 200 : 404).send(html)
 })
 
 seedAdminIfNeeded()

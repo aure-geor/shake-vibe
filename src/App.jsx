@@ -21,6 +21,7 @@ const AdminDashboard = lazy(() =>
 const ResetPassword = lazy(() =>
   import('@/pages/admin/ResetPassword').then((m) => ({ default: m.ResetPassword }))
 )
+const NotFound = lazy(() => import('@/pages/NotFound').then((m) => ({ default: m.NotFound })))
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="mentions-legales" element={<MentionsLegales />} />
             <Route path="cgv" element={<CGV />} />
             <Route path="politique-de-confidentialite" element={<PolitiqueConfidentialite />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="admin/connexion" element={<AdminLogin />} />
           <Route path="admin/mot-de-passe-oublie" element={<ResetPassword />} />
