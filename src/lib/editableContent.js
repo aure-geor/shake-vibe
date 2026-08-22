@@ -303,6 +303,152 @@ export const CONTENT_SCHEMA = [
     ],
   },
   {
+    page: 'Nos prestations',
+    fields: [
+      {
+        key: 'prestations.hero.title',
+        label: 'Titre principal',
+        type: 'text',
+        fallback: "L'expérience Shake & Vibe",
+      },
+      {
+        key: 'prestations.hero.intro',
+        label: 'Paragraphe d\'introduction',
+        type: 'textarea',
+        fallback:
+          'Shake & Vibe transforme votre événement en véritable expérience cocktail. Nous installons notre bar directement sur votre lieu de réception et prenons en charge tout ce qui est nécessaire au bon déroulement du service.',
+      },
+      {
+        key: 'prestations.hero.tagline',
+        label: 'Phrase d\'accroche',
+        type: 'text',
+        fallback: 'Vous profitez de votre événement. Nous nous occupons du reste.',
+      },
+      {
+        key: 'prestations.section1.title',
+        label: 'Section 1 — titre',
+        type: 'text',
+        fallback: "Un bar qui s'installe où vous le souhaitez",
+      },
+      {
+        key: 'prestations.section1.text1',
+        label: 'Section 1 — paragraphe 1',
+        type: 'textarea',
+        fallback:
+          'Mobile et entièrement autonome, notre bar peut prendre place dans de nombreux environnements : domaine, villa, jardin, terrasse, plage, hôtel ou espace événementiel.',
+      },
+      {
+        key: 'prestations.section1.text2',
+        label: 'Section 1 — paragraphe 2',
+        type: 'textarea',
+        fallback:
+          "Son installation ne nécessite ni arrivée d'eau ni alimentation électrique à proximité, ce qui nous permet de nous adapter à votre lieu et à la configuration de votre événement.",
+      },
+      {
+        key: 'prestations.section2.title',
+        label: 'Section 2 — titre',
+        type: 'text',
+        fallback: 'Des cocktails choisis pour votre événement',
+      },
+      {
+        key: 'prestations.section2.text1',
+        label: 'Section 2 — paragraphe 1',
+        type: 'textarea',
+        fallback:
+          'Cocktails signatures, grands classiques ou créations sans alcool : vous sélectionnez les cocktails que vous souhaitez proposer à vos invités.',
+      },
+      {
+        key: 'prestations.section2.text2',
+        label: 'Section 2 — paragraphe 2',
+        type: 'textarea',
+        fallback:
+          "Nous vous accompagnons dans la composition d'une carte cohérente avec votre événement, vos envies et le nombre de convives.",
+      },
+      {
+        key: 'prestations.section3.title',
+        label: 'Section 3 — titre',
+        type: 'text',
+        fallback: 'Chaque détail compte',
+      },
+      {
+        key: 'prestations.section3.intro',
+        label: 'Section 3 — introduction',
+        type: 'textarea',
+        fallback:
+          "Parce que l'expérience ne s'arrête pas au cocktail, nous accordons une attention particulière à sa présentation.",
+      },
+      {
+        key: 'prestations.detail1.title',
+        label: 'Détail 1 — titre',
+        type: 'text',
+        fallback: 'Verrerie élégante',
+      },
+      {
+        key: 'prestations.detail1.text',
+        label: 'Détail 1 — texte',
+        type: 'textarea',
+        fallback: 'Une sélection de verres adaptée aux cocktails proposés.',
+      },
+      {
+        key: 'prestations.detail2.title',
+        label: 'Détail 2 — titre',
+        type: 'text',
+        fallback: 'Carte cocktails personnalisée',
+      },
+      {
+        key: 'prestations.detail2.text',
+        label: 'Détail 2 — texte',
+        type: 'textarea',
+        fallback: 'Nous créons la carte qui présentera la sélection de cocktails à vos invités.',
+      },
+      {
+        key: 'prestations.detail3.title',
+        label: 'Détail 3 — titre',
+        type: 'text',
+        fallback: 'Un bar à votre image',
+      },
+      {
+        key: 'prestations.detail3.text',
+        label: 'Détail 3 — texte',
+        type: 'textarea',
+        fallback:
+          "Selon votre événement, différentes options d'habillage et de décoration du bar peuvent être proposées sur demande et sur devis.",
+      },
+      {
+        key: 'prestations.section4.title',
+        label: 'Section 4 — titre',
+        type: 'text',
+        fallback: 'Plus qu\'un bar, une expérience',
+      },
+      {
+        key: 'prestations.section4.text',
+        label: 'Section 4 — texte',
+        type: 'textarea',
+        fallback:
+          "Derrière le bar, nos barmans préparent et servent les cocktails directement devant vos invités.\n\nPréparation, matériel professionnel, ingrédients, glace, verrerie, installation, service et rangement : nous prenons en charge l'ensemble de la prestation bar.",
+      },
+      {
+        key: 'prestations.closing.title',
+        label: 'Titre de clôture',
+        type: 'text',
+        fallback: 'Vous profitez. Nous nous occupons du reste.',
+      },
+      {
+        key: 'prestations.closing.text',
+        label: 'Texte de clôture',
+        type: 'textarea',
+        fallback:
+          "De l'installation du bar au dernier cocktail servi, Shake & Vibe vous accompagne pour créer une expérience élégante, conviviale et adaptée à votre événement.",
+      },
+      {
+        key: 'prestations.cta',
+        label: 'Texte du bouton de devis',
+        type: 'text',
+        fallback: 'Obtenir mon devis',
+      },
+    ],
+  },
+  {
     page: 'Nos cocktails',
     fields: [
       {

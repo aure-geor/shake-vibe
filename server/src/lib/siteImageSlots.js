@@ -68,6 +68,54 @@ export const SITE_IMAGE_SLOTS = [
     page: 'Nos cocktails',
     hint: 'Format paysage large.',
   },
+  {
+    key: 'prestations-photo1',
+    label: 'Photo 1 — bandeau d’introduction',
+    page: 'Nos prestations',
+    hint: 'Format paysage large.',
+  },
+  {
+    key: 'prestations-photo2',
+    label: 'Photo 2 — installation du bar (gauche)',
+    page: 'Nos prestations',
+    hint: 'Affichée à côté de la photo 3.',
+  },
+  {
+    key: 'prestations-photo3',
+    label: 'Photo 3 — installation du bar (droite)',
+    page: 'Nos prestations',
+    hint: 'Affichée à côté de la photo 2.',
+  },
+  {
+    key: 'prestations-photo4',
+    label: 'Photo 4 — cocktails',
+    page: 'Nos prestations',
+    hint: 'Format paysage large.',
+  },
+  {
+    key: 'prestations-photo5',
+    label: 'Photo 5 — détails (1/3)',
+    page: 'Nos prestations',
+    hint: 'Affichée avec les photos 6 et 7.',
+  },
+  {
+    key: 'prestations-photo6',
+    label: 'Photo 6 — détails (2/3)',
+    page: 'Nos prestations',
+    hint: 'Affichée avec les photos 5 et 7.',
+  },
+  {
+    key: 'prestations-photo7',
+    label: 'Photo 7 — détails (3/3)',
+    page: 'Nos prestations',
+    hint: 'Affichée avec les photos 5 et 6.',
+  },
+  {
+    key: 'prestations-photo8',
+    label: 'Photo 8 — service au bar',
+    page: 'Nos prestations',
+    hint: 'Format paysage large.',
+  },
 ]
 
 export const SITE_IMAGE_SLOT_KEYS = new Set(SITE_IMAGE_SLOTS.map((s) => s.key))
