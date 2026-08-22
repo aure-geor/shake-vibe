@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Flame, MapPin, Sparkles, Wind } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { cn } from '@/lib/utils'
 import { useSiteImages } from '@/hooks/useSiteImages'
 import { useSiteContent } from '@/hooks/useSiteContent'
 
@@ -18,7 +19,7 @@ export function About() {
       <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
         Qui sommes-nous ?
       </p>
-      <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+      <h1 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('about.title', 'white'))}>
         {t('about.title')}
       </h1>
 
@@ -31,19 +32,19 @@ export function About() {
           />
         )}
         <div
-          className={`space-y-6 text-base leading-relaxed text-white/80 sm:text-lg ${portrait ? 'sm:col-span-3' : ''}`}
+          className={`space-y-6 text-base leading-relaxed sm:text-lg ${portrait ? 'sm:col-span-3' : ''}`}
         >
-          <p>{t('about.intro1')}</p>
-          <p>{t('about.intro2')}</p>
+          <p className={t.color('about.intro1', 'gray')}>{t('about.intro1')}</p>
+          <p className={t.color('about.intro2', 'gray')}>{t('about.intro2')}</p>
         </div>
       </div>
 
       <Separator className="my-14 bg-gold/15" />
 
-      <h2 className="text-center font-heading text-2xl font-semibold sm:text-3xl">
+      <h2 className={cn('text-center font-heading text-2xl font-semibold sm:text-3xl', t.color('about.journey.title', 'white'))}>
         {t('about.journey.title')}
       </h2>
-      <p className="mx-auto mt-3 max-w-xl text-center text-white/60">
+      <p className={cn('mx-auto mt-3 max-w-xl text-center', t.color('about.journey.subtitle', 'gray'))}>
         {t('about.journey.subtitle')}
       </p>
 
@@ -56,10 +57,12 @@ export function About() {
             <span className="flex size-10 items-center justify-center rounded-full border border-gold/30 text-gold">
               <Icon className="size-5" />
             </span>
-            <h3 className="mt-4 font-heading text-lg font-semibold">
+            <h3 className={cn('mt-4 font-heading text-lg font-semibold', t.color(`about.etape${i + 1}.lieu`, 'white'))}>
               {t(`about.etape${i + 1}.lieu`)}
             </h3>
-            <p className="mt-2 text-sm text-white/65">{t(`about.etape${i + 1}.texte`)}</p>
+            <p className={cn('mt-2 text-sm', t.color(`about.etape${i + 1}.texte`, 'gray'))}>
+              {t(`about.etape${i + 1}.texte`)}
+            </p>
           </div>
         ))}
       </div>
@@ -80,10 +83,12 @@ export function About() {
           </>
         )}
         <div className="relative px-6 py-16 text-center sm:py-20">
-          <h2 className="font-heading text-2xl font-semibold sm:text-3xl">
+          <h2 className={cn('font-heading text-2xl font-semibold sm:text-3xl', t.color('about.closing.title', 'white'))}>
             {t('about.closing.title')}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-white/70">{t('about.closing.text')}</p>
+          <p className={cn('mx-auto mt-4 max-w-2xl', t.color('about.closing.text', 'gray'))}>
+            {t('about.closing.text')}
+          </p>
           <Button
             render={<Link to="/devis" />}
             nativeButton={false}

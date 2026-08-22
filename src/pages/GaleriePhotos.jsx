@@ -2,6 +2,7 @@ import { useGallery } from '@/hooks/useGallery'
 import { useSiteContent } from '@/hooks/useSiteContent'
 import { PhotoCarousel } from '@/components/PhotoCarousel'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export function GaleriePhotos() {
   const t = useSiteContent()
@@ -12,10 +13,10 @@ export function GaleriePhotos() {
       <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
         Nos réalisations
       </p>
-      <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+      <h1 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('prestations.title', 'white'))}>
         {t('prestations.title')}
       </h1>
-      <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+      <p className={cn('mx-auto mt-4 max-w-2xl text-center', t.color('prestations.subtitle', 'gray'))}>
         {t('prestations.subtitle')}
       </p>
 

@@ -12,6 +12,7 @@ import {
   Wine,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { services } from '@/data/services'
 import { useSiteImages } from '@/hooks/useSiteImages'
 import { useSiteContent } from '@/hooks/useSiteContent'
@@ -49,10 +50,15 @@ export function Home() {
         )}
         <div className="relative mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
           <img src="/sunburst.png" alt="" className="mx-auto mb-6 h-16 w-auto sm:h-20" />
-          <h1 className="font-heading text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl">
+          <h1
+            className={cn(
+              'font-heading text-4xl leading-tight font-semibold text-balance sm:text-5xl lg:text-6xl',
+              t.color('home.hero.title', 'white')
+            )}
+          >
             {t('home.hero.title')}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-white/70 sm:text-lg">
+          <p className={cn('mx-auto mt-6 max-w-2xl text-base sm:text-lg', t.color('home.hero.subtitle', 'gray'))}>
             {t('home.hero.subtitle')}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -81,10 +87,10 @@ export function Home() {
       {/* HOW — notre approche */}
       <section id="notre-approche" className="border-t border-gold/10 bg-white/[0.02]">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-24">
-          <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
+          <p className={cn('text-center text-xs font-medium tracking-[0.3em] uppercase', t.color('home.how.eyebrow', 'gold'))}>
             {t('home.how.eyebrow')}
           </p>
-          <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+          <h2 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('home.how.title', 'white'))}>
             {t('home.how.title')}
           </h2>
 
@@ -97,10 +103,17 @@ export function Home() {
                 <span className="flex size-11 items-center justify-center rounded-full border border-gold/30 text-gold">
                   <Icon className="size-5" />
                 </span>
-                <h3 className="font-heading text-lg font-semibold text-white">
+                <h3
+                  className={cn(
+                    'font-heading text-lg font-semibold',
+                    t.color(`home.how.item${i + 1}.title`, 'white')
+                  )}
+                >
                   {t(`home.how.item${i + 1}.title`)}
                 </h3>
-                <p className="text-sm text-white/60">{t(`home.how.item${i + 1}.text`)}</p>
+                <p className={cn('text-sm', t.color(`home.how.item${i + 1}.text`, 'gray'))}>
+                  {t(`home.how.item${i + 1}.text`)}
+                </p>
               </div>
             ))}
           </div>
@@ -110,13 +123,15 @@ export function Home() {
       {/* WHAT — ce que nous proposons */}
       <section className="border-t border-gold/10">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-24">
-          <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
+          <p className={cn('text-center text-xs font-medium tracking-[0.3em] uppercase', t.color('home.what.eyebrow', 'gold'))}>
             {t('home.what.eyebrow')}
           </p>
-          <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+          <h2 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('home.what.title', 'white'))}>
             {t('home.what.title')}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">{t('home.what.text')}</p>
+          <p className={cn('mx-auto mt-4 max-w-2xl text-center', t.color('home.what.text', 'gray'))}>
+            {t('home.what.text')}
+          </p>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map(({ id }) => {
@@ -140,10 +155,17 @@ export function Home() {
                     <span className="flex size-11 items-center justify-center rounded-full border border-gold/30 text-gold">
                       <Icon className="size-5" />
                     </span>
-                    <h3 className="font-heading text-lg font-semibold text-white">
+                    <h3
+                      className={cn(
+                        'font-heading text-lg font-semibold',
+                        t.color(`services.${id}.titre`, 'white')
+                      )}
+                    >
                       {t(`services.${id}.titre`)}
                     </h3>
-                    <p className="text-sm text-white/60">{t(`services.${id}.description`)}</p>
+                    <p className={cn('text-sm', t.color(`services.${id}.description`, 'gray'))}>
+                      {t(`services.${id}.description`)}
+                    </p>
                   </div>
                 </div>
               )

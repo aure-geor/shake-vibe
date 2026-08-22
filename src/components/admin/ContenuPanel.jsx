@@ -4,11 +4,37 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { FormField } from '@/components/devis/FormField'
-import { CONTENT_SCHEMA, CONTENT_FALLBACKS } from '@/lib/editableContent'
+import { CONTENT_SCHEMA, CONTENT_FALLBACKS, COLOR_OPTIONS, COLORABLE_DEFAULTS } from '@/lib/editableContent'
 import { api } from '@/lib/api'
+import { cn } from '@/lib/utils'
+
+const COLOR_DEFAULT_VALUES = Object.fromEntries(
+  Object.entries(COLORABLE_DEFAULTS).map(([key, color]) => [`${key}__color`, color])
+)
+
+function ColorPicker({ value, onChange }) {
+  return (
+    <div className="mt-2 flex items-center gap-2">
+      {COLOR_OPTIONS.map((opt) => (
+        <button
+          key={opt.value}
+          type="button"
+          title={opt.label}
+          aria-label={`Couleur ${opt.label}`}
+          onClick={() => onChange(opt.value)}
+          className={cn(
+            'size-6 rounded-full border-2 transition-transform',
+            value === opt.value ? 'scale-110 border-gold' : 'border-white/20 hover:border-white/50'
+          )}
+          style={{ backgroundColor: opt.hex }}
+        />
+      ))}
+    </div>
+  )
+}
 
 export function ContenuPanel() {
-  const [values, setValues] = useState(CONTENT_FALLBACKS)
+  const [values, setValues] = useState({ ...CONTENT_FALLBACKS, ...COLOR_DEFAULT_VALUES })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [expanded, setExpanded] = useState(CONTENT_SCHEMA[0]?.page ?? null)
@@ -33,6 +59,11 @@ export function ContenuPanel() {
     setError(null)
     try {
       const updates = Object.fromEntries(group.fields.map((f) => [f.key, values[f.key] ?? '']))
+      for (const f of group.fields) {
+        if (f.key in COLORABLE_DEFAULTS) {
+          updates[`${f.key}__color`] = values[`${f.key}__color`] ?? COLORABLE_DEFAULTS[f.key]
+        }
+      }
       await api.put('/api/content', { updates })
       setSavedPage(group.page)
     } catch (err) {
@@ -93,6 +124,12 @@ export function ContenuPanel() {
                           value={values[field.key] ?? ''}
                           onChange={(e) => onChange(field.key, e.target.value)}
                           placeholder={field.fallback}
+                        />
+                      )}
+                      {field.key in COLORABLE_DEFAULTS && (
+                        <ColorPicker
+                          value={values[`${field.key}__color`] ?? COLORABLE_DEFAULTS[field.key]}
+                          onChange={(color) => onChange(`${field.key}__color`, color)}
                         />
                       )}
                     </FormField>

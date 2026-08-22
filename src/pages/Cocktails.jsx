@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, GlassWater, PartyPopper, Sparkles, Wine } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { cn } from '@/lib/utils'
 import { EXPERIENCES_COCKTAILS } from '@/lib/quoteSchema'
 import { useSiteImages } from '@/hooks/useSiteImages'
 import { useGallery } from '@/hooks/useGallery'
@@ -21,10 +22,10 @@ export function Cocktails() {
       <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
         Nos cocktails
       </p>
-      <h1 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+      <h1 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('cocktails.title', 'white'))}>
         {t('cocktails.title')}
       </h1>
-      <p className="mx-auto mt-4 max-w-2xl text-center whitespace-pre-line text-white/65">
+      <p className={cn('mx-auto mt-4 max-w-2xl text-center whitespace-pre-line', t.color('cocktails.subtitle', 'gray'))}>
         {t('cocktails.subtitle')}
       </p>
 
@@ -51,7 +52,9 @@ export function Cocktails() {
                   <Icon className="size-5" />
                 </span>
                 <h2 className="font-heading text-lg font-semibold text-white">{label}</h2>
-                <p className="text-sm text-white/60">{t(`cocktails.experience.${value}`)}</p>
+                <p className={cn('text-sm', t.color(`cocktails.experience.${value}`, 'gray'))}>
+                  {t(`cocktails.experience.${value}`)}
+                </p>
               </div>
             </div>
           )
@@ -61,13 +64,13 @@ export function Cocktails() {
       {menuPhotos.length > 0 && (
         <>
           <Separator className="my-16 bg-gold/15" />
-          <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
+          <p className={cn('text-center text-xs font-medium tracking-[0.3em] uppercase', t.color('cocktails.menu.eyebrow', 'gold'))}>
             {t('cocktails.menu.eyebrow')}
           </p>
-          <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+          <h2 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('cocktails.menu.title', 'white'))}>
             {t('cocktails.menu.title')}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+          <p className={cn('mx-auto mt-4 max-w-2xl text-center', t.color('cocktails.menu.subtitle', 'gray'))}>
             {t('cocktails.menu.subtitle')}
           </p>
           <PhotoCarousel
@@ -79,7 +82,7 @@ export function Cocktails() {
             showDots={false}
             className="mt-10"
           />
-          <p className="mx-auto mt-10 max-w-2xl text-center text-white/65">
+          <p className={cn('mx-auto mt-10 max-w-2xl text-center', t.color('cocktails.menu.upsell', 'gray'))}>
             {t('cocktails.menu.upsell')}
           </p>
         </>
@@ -100,13 +103,13 @@ export function Cocktails() {
           </>
         )}
         <div className="relative flex min-h-[480px] flex-col justify-center px-6 py-16 text-center sm:min-h-[560px] sm:py-20">
-          <p className="text-center text-xs font-medium tracking-[0.3em] text-gold uppercase">
+          <p className={cn('text-center text-xs font-medium tracking-[0.3em] uppercase', t.color('cocktails.wine.eyebrow', 'gold'))}>
             {t('cocktails.wine.eyebrow')}
           </p>
-          <h2 className="mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl">
+          <h2 className={cn('mt-4 text-center font-heading text-3xl font-semibold sm:text-4xl', t.color('cocktails.wine.title', 'white'))}>
             {t('cocktails.wine.title')}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center whitespace-pre-line text-white/65">
+          <p className={cn('mx-auto mt-4 max-w-2xl text-center whitespace-pre-line', t.color('cocktails.wine.subtitle', 'gray'))}>
             {t('cocktails.wine.subtitle')}
           </p>
           <div className="mt-8 flex justify-center">
@@ -139,10 +142,12 @@ export function Cocktails() {
         <span className="flex size-11 items-center justify-center rounded-full border border-gold/30 text-gold">
           <GlassWater className="size-5" />
         </span>
-        <h2 className="font-heading text-2xl font-semibold sm:text-3xl">
+        <h2 className={cn('font-heading text-2xl font-semibold sm:text-3xl', t.color('cocktails.final.title', 'white'))}>
           {t('cocktails.final.title')}
         </h2>
-        <p className="max-w-xl text-white/70">{t('cocktails.final.text')}</p>
+        <p className={cn('max-w-xl', t.color('cocktails.final.text', 'gray'))}>
+          {t('cocktails.final.text')}
+        </p>
         <Button
           render={<Link to="/devis" />}
           nativeButton={false}
