@@ -80,7 +80,7 @@ export function Prestations() {
           alt={images['prestations-photo4'].alt}
           loading="lazy"
           decoding="async"
-          className="mt-10 aspect-video w-full rounded-xl object-cover"
+          className="mx-auto mt-10 aspect-3/4 w-full max-w-md rounded-xl object-cover"
         />
       )}
 
@@ -138,7 +138,7 @@ export function Prestations() {
           alt={images['prestations-photo8'].alt}
           loading="lazy"
           decoding="async"
-          className="mt-10 aspect-video w-full rounded-xl object-cover"
+          className="mx-auto mt-10 aspect-3/4 w-full max-w-md rounded-xl object-cover"
         />
       )}
 
