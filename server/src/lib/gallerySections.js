@@ -5,7 +5,7 @@ export const GALLERY_SECTIONS = [
   {
     key: 'prestations',
     label: 'Réalisations (carrousel)',
-    page: 'Nos prestations',
+    page: 'Galerie photos',
   },
   {
     key: 'cocktails-menu',

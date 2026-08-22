@@ -14,7 +14,11 @@ const PAGES = {
       'Découvrez l\'histoire de Shake & Vibe et l\'expertise de nos barmen professionnels, façonnée par un parcours international, au service de vos événements.',
   },
   '/prestations': {
-    title: 'Nos prestations — Bar mobile & barman privé pour événements',
+    title: 'Nos prestations',
+    description: 'Cette page est en cours de préparation.',
+  },
+  '/galerie-photos': {
+    title: 'Galerie photos — Bar mobile & barman privé pour événements',
     description:
       'Mariages, soirées privées, séminaires d\'entreprise : découvrez nos réalisations et notre bar mobile pour des événements sur-mesure partout en France.',
   },

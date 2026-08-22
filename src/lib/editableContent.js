@@ -280,7 +280,7 @@ export const CONTENT_SCHEMA = [
     ],
   },
   {
-    page: 'Nos prestations',
+    page: 'Galerie photos',
     fields: [
       {
         key: 'prestations.title',
@@ -412,6 +412,12 @@ export const CONTENT_SCHEMA = [
       { key: 'nav.qui_sommes_nous', label: 'Lien de menu — Qui sommes-nous ?', type: 'text', fallback: 'Qui sommes-nous ?' },
       { key: 'nav.prestations', label: 'Lien de menu — Nos prestations', type: 'text', fallback: 'Nos prestations' },
       { key: 'nav.cocktails', label: 'Lien de menu — Nos cocktails', type: 'text', fallback: 'Nos cocktails' },
+      {
+        key: 'nav.galerie_photos',
+        label: 'Lien de menu — Galerie photos',
+        type: 'text',
+        fallback: 'Galerie photos',
+      },
       { key: 'nav.devis', label: 'Lien de menu — Demande de devis', type: 'text', fallback: 'Demande de devis' },
       {
         key: 'links.instagram',

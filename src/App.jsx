@@ -6,6 +6,9 @@ import { Home } from '@/pages/Home'
 const About = lazy(() => import('@/pages/About').then((m) => ({ default: m.About })))
 const Prestations = lazy(() => import('@/pages/Prestations').then((m) => ({ default: m.Prestations })))
 const Cocktails = lazy(() => import('@/pages/Cocktails').then((m) => ({ default: m.Cocktails })))
+const GaleriePhotos = lazy(() =>
+  import('@/pages/GaleriePhotos').then((m) => ({ default: m.GaleriePhotos }))
+)
 const Devis = lazy(() => import('@/pages/Devis').then((m) => ({ default: m.Devis })))
 const MentionsLegales = lazy(() =>
   import('@/pages/MentionsLegales').then((m) => ({ default: m.MentionsLegales }))
@@ -33,6 +36,7 @@ function App() {
             <Route path="qui-sommes-nous" element={<About />} />
             <Route path="prestations" element={<Prestations />} />
             <Route path="nos-cocktails" element={<Cocktails />} />
+            <Route path="galerie-photos" element={<GaleriePhotos />} />
             <Route path="devis" element={<Devis />} />
             <Route path="mentions-legales" element={<MentionsLegales />} />
             <Route path="cgv" element={<CGV />} />

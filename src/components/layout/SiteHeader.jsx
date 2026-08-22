@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { to: '/qui-sommes-nous', key: 'nav.qui_sommes_nous' },
   { to: '/prestations', key: 'nav.prestations' },
   { to: '/nos-cocktails', key: 'nav.cocktails' },
+  { to: '/galerie-photos', key: 'nav.galerie_photos' },
   { to: '/devis', key: 'nav.devis' },
 ]
 

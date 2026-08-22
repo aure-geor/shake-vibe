@@ -22,6 +22,9 @@ export function SiteFooter() {
           <Link to="/nos-cocktails" className="transition-colors hover:text-gold">
             {t('nav.cocktails')}
           </Link>
+          <Link to="/galerie-photos" className="transition-colors hover:text-gold">
+            {t('nav.galerie_photos')}
+          </Link>
           <Link to="/devis" className="transition-colors hover:text-gold">
             {t('nav.devis')}
           </Link>
