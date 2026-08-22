@@ -32,7 +32,7 @@ export function Prestations() {
           alt={images['prestations-photo1'].alt}
           loading="lazy"
           decoding="async"
-          className="mt-10 aspect-video w-full rounded-xl object-cover"
+          className="mx-auto mt-10 aspect-3/4 w-full max-w-md rounded-xl object-cover"
         />
       )}
 
